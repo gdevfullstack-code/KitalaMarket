@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - Kitalamarket</title>
+    <style>
+        :root {
+          --primary-color: #009688;
+          --primary-dark: #00796b;
+          --primary-light: #4db6ac;
+          --secondary-color: #ff5722;
+          --background-color: #f5f5f5;
+          --white: #ffffff;
+          --gray-light: #f0f0f0;
+          --gray-medium: #cccccc;
+          --gray-dark: #666666;
+          --text-dark: #333333;
+          --text-light: #777777;
+          --border-radius: 8px;
+          --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+          --transition: all 0.3s ease;
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: var(--text-dark);
+          background-color: var(--background-color);
+        }
+
+        /* Header */
+        .header {
+          background: var(--white);
+          box-shadow: var(--shadow);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          padding: 1rem 0;
+        }
+
+        .header-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          text-decoration: none;
+        }
+
+        .search-bar {
+          flex: 1;
+          max-width: 400px;
+          position: relative;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: 2px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          font-size: 1rem;
+          transition: var(--transition);
+        }
+
+        .search-input:focus {
+          outline: none;
+          border-color: var(--primary-color);
+        }
+
+        .nav-menu {
+          display: flex;
+          list-style: none;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: var(--text-dark);
+          font-weight: 500;
+          transition: var(--transition);
+        }
+
+        .nav-link:hover {
+          color: var(--primary-color);
+        }
+
+        /* Search Layout */
+        .search-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+          display: grid;
+          grid-template-columns: 280px 1fr;
+          gap: 2rem;
+        }
+
+        /* Filters Sidebar */
+        .filters-sidebar {
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow);
+          padding: 1.5rem;
+          height: fit-content;
+          position: sticky;
+          top: 100px;
+        }
+
+        .filters-title {
+          font-size: 1.3rem;
+          font-weight: 600;
+          margin-bottom: 1.5rem;
+          color: var(--text-dark);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .filter-section {
+          margin-bottom: 2rem;
+        }
+
+        .filter-label {
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: var(--text-dark);
+          display: block;
+        }
+
+        .filter-group {
+          margin-bottom: 1rem;
+        }
+
+        .checkbox-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+          cursor: pointer;
+        }
+
+        .checkbox {
+          width: 18px;
+          height: 18px;
+          accent-color: var(--primary-color);
+        }
+
+        .checkbox-label {
+          font-size: 0.9rem;
+          color: var(--text-dark);
+          cursor: pointer;
+        }
+
+        .price-range {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        .price-input {
+          width: 80px;
+          padding: 0.5rem;
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          font-size: 0.9rem;
+        }
+
+        .range-slider {
+          width: 100%;
+          margin: 1rem 0;
+        }
+
+        .distance-slider {
+          width: 100%;
+          accent-color: var(--primary-color);
+        }
+
+        .distance-value {
+          text-align: center;
+          font-weight: 500;
+          color: var(--primary-color);
+          margin-top: 0.5rem;
+        }
+
+        .rating-filter {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .rating-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+        }
+
+        .stars {
+          color: #ffc107;
+        }
+
+        .clear-filters {
+          background: var(--secondary-color);
+          color: var(--white);
+          border: none;
+          padding: 0.75rem 1rem;
+          border-radius: var(--border-radius);
+          cursor: pointer;
+          width: 100%;
+          font-weight: 500;
+          transition: var(--transition);
+        }
+
+        .clear-filters:hover {
+          background: #d84315;
+        }
+
+        /* Results Area */
+        .results-area {
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow);
+          padding: 1.5rem;
+        }
+
+        .results-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .results-count {
+          font-size: 1.1rem;
+          color: var(--text-dark);
+        }
+
+        .sort-controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .sort-label {
+          font-weight: 500;
+          color: var(--text-dark);
+        }
+
+        .sort-select {
+          padding: 0.5rem;
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          background: var(--white);
+          cursor: pointer;
+        }
+
+        .view-toggle {
+          display: flex;
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          overflow: hidden;
+        }
+
+        .view-btn {
+          padding: 0.5rem 0.75rem;
+          border: none;
+          background: var(--white);
+          cursor: pointer;
+          transition: var(--transition);
+        }
+
+        .view-btn.active {
+          background: var(--primary-color);
+          color: var(--white);
+        }
+
+        /* Products Grid */
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .products-list {
+          display: none;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .product-card {
+          background: var(--white);
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          overflow: hidden;
+          transition: var(--transition);
+          cursor: pointer;
+        }
+
+        .product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--shadow-hover);
+          border-color: var(--primary-color);
+        }
+
+        .product-image {
+          width: 100%;
+          height: 200px;
+          background: var(--gray-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 3rem;
+          color: var(--gray-dark);
+          position: relative;
+        }
+
+        .product-badge {
+          position: absolute;
+          top: 0.5rem;
+          left: 0.5rem;
+          background: var(--secondary-color);
+          color: var(--white);
+          padding: 0.25rem 0.5rem;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .product-favorite {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          background: rgba(255, 255, 255, 0.9);
+          border: none;
+          border-radius: 50%;
+          width: 35px;
+          height: 35px;
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: var(--transition);
+        }
+
+        .product-favorite:hover {
+          background: var(--primary-color);
+          color: var(--white);
+        }
+
+        .product-info {
+          padding: 1rem;
+        }
+
+        .product-title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: var(--text-dark);
+          line-height: 1.3;
+        }
+
+        .product-price {
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .star {
+          color: #ffc107;
+          font-size: 0.9rem;
+        }
+
+        .rating-count {
+          font-size: 0.9rem;
+          color: var(--text-light);
+          margin-left: 0.25rem;
+        }
+
+        .product-location {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          color: var(--text-light);
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-seller {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .seller-avatar {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: var(--primary-color);
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: bold;
+        }
+
+        .seller-badge {
+          background: var(--primary-color);
+          color: var(--white);
+          padding: 0.1rem 0.3rem;
+          border-radius: 8px;
+          font-size: 0.7rem;
+          font-weight: 500;
+        }
+
+        /* List View */
+        .product-card-list {
+          display: flex;
+          gap: 1rem;
+          padding: 1rem;
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          transition: var(--transition);
+        }
+
+        .product-card-list:hover {
+          box-shadow: var(--shadow-hover);
+          border-color: var(--primary-color);
+        }
+
+        .product-image-list {
+          width: 150px;
+          height: 120px;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          color: var(--gray-dark);
+          flex-shrink: 0;
+        }
+
+        .product-info-list {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        /* Pagination */
+        .pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          margin-top: 2rem;
+        }
+
+        .page-btn {
+          padding: 0.5rem 0.75rem;
+          border: 1px solid var(--gray-medium);
+          background: var(--white);
+          border-radius: var(--border-radius);
+          cursor: pointer;
+          transition: var(--transition);
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+          background: var(--primary-color);
+          color: var(--white);
+          border-color: var(--primary-color);
+        }
+
+        /* Mobile Filters */
+        .mobile-filters-toggle {
+          display: none;
+          background: var(--primary-color);
+          color: var(--white);
+          border: none;
+          padding: 0.75rem 1rem;
+          border-radius: var(--border-radius);
+          cursor: pointer;
+          margin-bottom: 1rem;
+          width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .search-container {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          
+          .filters-sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            overflow-y: auto;
+          }
+          
+          .filters-sidebar.show {
+            display: block;
+          }
+          
+          .mobile-filters-toggle {
+            display: block;
+          }
+          
+          .results-header {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          
+          .sort-controls {
+            justify-content: space-between;
+          }
+          
+          .products-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .product-card-list {
+            flex-direction: column;
+          }
+          
+          .product-image-list {
+            width: 100%;
+            height: 200px;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">🛒 Kitalamarket</a>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Rechercher des produits..." value="iPhone">
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="publish.html" class="nav-link">Vendre</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Mon compte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filtersSidebar">
+            <h3 class="filters-title">🔍 Filtres</h3>
+            
+            <!-- Catégories -->
+            <div class="filter-section">
+                <label class="filter-label">Catégories</label>
+                <div class="filter-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-electronique">
+                        <label class="checkbox-label" for="cat-electronique">📱 Électronique (234)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-mode">
+                        <label class="checkbox-label" for="cat-mode">👕 Mode (156)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-maison">
+                        <label class="checkbox-label" for="cat-maison">🏠 Maison & Jardin (89)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-auto">
+                        <label class="checkbox-label" for="cat-auto">🚗 Automobile (67)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-livres">
+                        <label class="checkbox-label" for="cat-livres">📚 Livres & Loisirs (123)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="cat-sports">
+                        <label class="checkbox-label" for="cat-sports">⚽ Sports (78)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prix -->
+            <div class="filter-section">
+                <label class="filter-label">Prix</label>
+                <div class="price-range">
+                    <input type="number" class="price-input" placeholder="Min" value="0">
+                    <span>-</span>
+                    <input type="number" class="price-input" placeholder="Max" value="1000">
+                    <span>€</span>
+                </div>
+                <input type="range" class="range-slider" min="0" max="2000" value="1000">
+            </div>
+
+            <!-- Distance -->
+            <div class="filter-section">
+                <label class="filter-label">Distance</label>
+                <input type="range" class="distance-slider" min="1" max="100" value="25" id="distanceSlider">
+                <div class="distance-value" id="distanceValue">25 km</div>
+            </div>
+
+            <!-- État -->
+            <div class="filter-section">
+                <label class="filter-label">État</label>
+                <div class="filter-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="etat-neuf">
+                        <label class="checkbox-label" for="etat-neuf">✨ Neuf</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="etat-comme-neuf">
+                        <label class="checkbox-label" for="etat-comme-neuf">🌟 Comme neuf</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="etat-bon">
+                        <label class="checkbox-label" for="etat-bon">👍 Bon état</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="etat-correct">
+                        <label class="checkbox-label" for="etat-correct">👌 État correct</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note vendeur -->
+            <div class="filter-section">
+                <label class="filter-label">Note vendeur</label>
+                <div class="rating-filter">
+                    <div class="rating-item">
+                        <input type="checkbox" class="checkbox" id="rating-5">
+                        <label class="checkbox-label" for="rating-5">
+                            <span class="stars">★★★★★</span> et plus
+                        </label>
+                    </div>
+                    <div class="rating-item">
+                        <input type="checkbox" class="checkbox" id="rating-4">
+                        <label class="checkbox-label" for="rating-4">
+                            <span class="stars">★★★★☆</span> et plus
+                        </label>
+                    </div>
+                    <div class="rating-item">
+                        <input type="checkbox" class="checkbox" id="rating-3">
+                        <label class="checkbox-label" for="rating-3">
+                            <span class="stars">★★★☆☆</span> et plus
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type de vendeur -->
+            <div class="filter-section">
+                <label class="filter-label">Type de vendeur</label>
+                <div class="filter-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="vendeur-pro">
+                        <label class="checkbox-label" for="vendeur-pro">🏪 Professionnel</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" class="checkbox" id="vendeur-particulier">
+                        <label class="checkbox-label" for="vendeur-particulier">👤 Particulier</label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="clear-filters" onclick="clearAllFilters()">Effacer les filtres</button>
+        </aside>
+
+        <!-- Results Area -->
+        <main class="results-area">
+            <button class="mobile-filters-toggle" onclick="toggleMobileFilters()">
+                🔍 Filtres
+            </button>
+            
+            <div class="results-header">
+                <div class="results-count">
+                    <strong>247 résultats</strong> pour "iPhone"
+                </div>
+                
+                <div class="sort-controls">
+                    <span class="sort-label">Trier par:</span>
+                    <select class="sort-select">
+                        <option value="pertinence">Pertinence</option>
+                        <option value="prix-croissant">Prix croissant</option>
+                        <option value="prix-decroissant">Prix décroissant</option>
+                        <option value="date-recent">Plus récent</option>
+                        <option value="distance">Distance</option>
+                        <option value="note">Note vendeur</option>
+                    </select>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="switchView('grid')">⊞</button>
+                        <button class="view-btn" onclick="switchView('list')">☰</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <div class="product-card" onclick="window.location.href='product.html'">
+                    <div class="product-image">
+                        📱
+                        <div class="product-badge">Nouveau</div>
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 13 Pro Max 256GB Bleu Alpin</h3>
+                        <div class="product-price">899 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-count">(24)</span>
+                        </div>
+                        <div class="product-location">📍 Paris 15ème • 2.3 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">JD</div>
+                            <span>Jean Dupont</span>
+                            <span class="seller-badge">PRO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 12 128GB Noir</h3>
+                        <div class="product-price">649 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">☆</span>
+                            <span class="rating-count">(18)</span>
+                        </div>
+                        <div class="product-location">📍 Lyon 3ème • 5.7 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">ML</div>
+                            <span>Marie Leroy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <div class="product-badge">Urgent</div>
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 14 Plus 512GB Violet</h3>
+                        <div class="product-price">1,099 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-count">(31)</span>
+                        </div>
+                        <div class="product-location">📍 Marseille 2ème • 8.1 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">PD</div>
+                            <span>Pierre Dubois</span>
+                            <span class="seller-badge">PRO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 11 64GB Rouge</h3>
+                        <div class="product-price">449 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">☆</span>
+                            <span class="rating-count">(12)</span>
+                        </div>
+                        <div class="product-location">📍 Toulouse 1er • 3.2 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">SB</div>
+                            <span>Sophie Bernard</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone SE 2022 128GB Blanc</h3>
+                        <div class="product-price">399 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">☆</span>
+                            <span class="rating-count">(9)</span>
+                        </div>
+                        <div class="product-location">📍 Nice 6ème • 12.5 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">AM</div>
+                            <span>Antoine Martin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <div class="product-badge">Négociable</div>
+                        <button class="product-favorite">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 13 mini 256GB Rose</h3>
+                        <div class="product-price">729 €</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-count">(15)</span>
+                        </div>
+                        <div class="product-location">📍 Nantes 1er • 6.8 km</div>
+                        <div class="product-seller">
+                            <div class="seller-avatar">CL</div>
+                            <span>Claire Lefebvre</span>
+                            <span class="seller-badge">PRO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products List (hidden by default) -->
+            <div class="products-list" id="productsList">
+                <!-- List view items will be generated by JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn">‹</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">›</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Distance slider
+        const distanceSlider = document.getElementById('distanceSlider');
+        const distanceValue = document.getElementById('distanceValue');
+
+        distanceSlider.addEventListener('input', function() {
+            distanceValue.textContent = this.value + ' km';
+        });
+
+        // View toggle
+        function switchView(view) {
+            const gridView = document.getElementById('productsGrid');
+            const listView = document.getElementById('productsList');
+            const viewBtns = document.querySelectorAll('.view-btn');
+
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+
+            if (view === 'grid') {
+                gridView.style.display = 'grid';
+                listView.style.display = 'none';
+                document.querySelector('.view-btn:first-child').classList.add('active');
+            } else {
+                gridView.style.display = 'none';
+                listView.style.display = 'flex';
+                document.querySelector('.view-btn:last-child').classList.add('active');
+                generateListView();
+            }
+        }
+
+        // Generate list view
+        function generateListView() {
+            const listContainer = document.getElementById('productsList');
+            const gridItems = document.querySelectorAll('.product-card');
+            
+            listContainer.innerHTML = '';
+            
+            gridItems.forEach(item => {
+                const title = item.querySelector('.product-title').textContent;
+                const price = item.querySelector('.product-price').textContent;
+                const rating = item.querySelector('.product-rating').innerHTML;
+                const location = item.querySelector('.product-location').textContent;
+                const seller = item.querySelector('.product-seller').innerHTML;
+                
+                const listItem = document.createElement('div');
+                listItem.className = 'product-card-list';
+                listItem.onclick = () => window.location.href = 'product.html';
+                listItem.innerHTML = `
+                    <div class="product-image-list">📱</div>
+                    <div class="product-info-list">
+                        <div>
+                            <h3 class="product-title">${title}</h3>
+                            <div class="product-price">${price}</div>
+                            <div class="product-rating">${rating}</div>
+                        </div>
+                        <div>
+                            <div class="product-location">${location}</div>
+                            <div class="product-seller">${seller}</div>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(listItem);
+            });
+        }
+
+        // Mobile filters toggle
+        function toggleMobileFilters() {
+            const sidebar = document.getElementById('filtersSidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        // Clear filters
+        function clearAllFilters() {
+            document.querySelectorAll('.checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.querySelectorAll('.price-input').forEach(input => {
+                input.value = '';
+            });
+            distanceSlider.value = 25;
+            distanceValue.textContent = '25 km';
+        }
+
+        // Favorites
+        document.querySelectorAll('.product-favorite').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (this.textContent === '♡') {
+                    this.textContent = '♥';
+                    this.style.color = 'red';
+                } else {
+                    this.textContent = '♡';
+                    this.style.color = '';
+                }
+            });
+        });
+
+        // Filter change handlers
+        document.querySelectorAll('.checkbox, .price-input, .distance-slider, .sort-select').forEach(element => {
+            element.addEventListener('change', function() {
+                // Simulate filtering
+                console.log('Filters updated');
+            });
+        });
+
+        // Animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
+

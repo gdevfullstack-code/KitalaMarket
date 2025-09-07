@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Kitalamarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Kitalamarket</a>
+            
+            <div class="admin-badge">
+                <span>👑</span>
+                Administration
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Tableau de bord</a></li>
+                    <li><a href="admin.html" class="nav-link active">Admin</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="admin-main">
+        <div class="container">
+            <!-- En-tête de la page -->
+            <div class="page-header">
+                <div class="page-title-section">
+                    <h1 class="page-title">Panneau d'administration</h1>
+                    <p class="page-subtitle">Gérez les utilisateurs, les produits et les statistiques de la plateforme</p>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-outline" onclick="exportData()">
+                        <span>📊</span>
+                        Exporter les données
+                    </button>
+                    <button class="btn btn-primary" onclick="refreshData()">
+                        <span>🔄</span>
+                        Actualiser
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistiques -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">2,847</h3>
+                        <p class="stat-label">Utilisateurs actifs</p>
+                        <span class="stat-change positive">+12% ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">15,623</h3>
+                        <p class="stat-label">Produits en ligne</p>
+                        <span class="stat-change positive">+8% ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">€89,456</h3>
+                        <p class="stat-label">Revenus ce mois</p>
+                        <span class="stat-change positive">+15% ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">23</h3>
+                        <p class="stat-label">Signalements</p>
+                        <span class="stat-change negative">+3 aujourd'hui</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtres et recherche -->
+            <div class="admin-controls">
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Rechercher un utilisateur..." id="userSearch">
+                        <button class="search-btn">
+                            <span>🔍</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <select class="filter-select">
+                        <option value="all">Tous les utilisateurs</option>
+                        <option value="buyers">Acheteurs</option>
+                        <option value="sellers">Vendeurs</option>
+                        <option value="suspended">Suspendus</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="all">Toutes les dates</option>
+                        <option value="today">Aujourd'hui</option>
+                        <option value="week">Cette semaine</option>
+                        <option value="month">Ce mois</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tableau des utilisateurs -->
+            <div class="admin-table-container">
+                <div class="table-header">
+                    <h2 class="table-title">Gestion des utilisateurs</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-outline" onclick="selectAll()">
+                            Tout sélectionner
+                        </button>
+                        <button class="btn btn-secondary" onclick="bulkAction()">
+                            Actions groupées
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllCheckbox"></th>
+                                <th>Utilisateur</th>
+                                <th>Type</th>
+                                <th>Email</th>
+                                <th>Inscription</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">JD</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Jean Dupont</span>
+                                            <span class="user-id">#12847</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="user-type buyer">Acheteur</span></td>
+                                <td>jean.dupont@email.com</td>
+                                <td>15/03/2024</td>
+                                <td><span class="status-badge active">Actif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view" title="Voir le profil">👁️</button>
+                                        <button class="action-btn edit" title="Modifier">✏️</button>
+                                        <button class="action-btn suspend" title="Suspendre">⏸️</button>
+                                        <button class="action-btn delete" title="Supprimer">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">ML</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Marie Leblanc</span>
+                                            <span class="user-id">#12846</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="user-type seller">Vendeur</span></td>
+                                <td>marie.leblanc@email.com</td>
+                                <td>14/03/2024</td>
+                                <td><span class="status-badge active">Actif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view" title="Voir le profil">👁️</button>
+                                        <button class="action-btn edit" title="Modifier">✏️</button>
+                                        <button class="action-btn suspend" title="Suspendre">⏸️</button>
+                                        <button class="action-btn delete" title="Supprimer">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">PM</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Pierre Martin</span>
+                                            <span class="user-id">#12845</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="user-type seller">Vendeur</span></td>
+                                <td>pierre.martin@email.com</td>
+                                <td>13/03/2024</td>
+                                <td><span class="status-badge suspended">Suspendu</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view" title="Voir le profil">👁️</button>
+                                        <button class="action-btn edit" title="Modifier">✏️</button>
+                                        <button class="action-btn activate" title="Réactiver">▶️</button>
+                                        <button class="action-btn delete" title="Supprimer">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">SD</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Sophie Durand</span>
+                                            <span class="user-id">#12844</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="user-type buyer">Acheteur</span></td>
+                                <td>sophie.durand@email.com</td>
+                                <td>12/03/2024</td>
+                                <td><span class="status-badge active">Actif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view" title="Voir le profil">👁️</button>
+                                        <button class="action-btn edit" title="Modifier">✏️</button>
+                                        <button class="action-btn suspend" title="Suspendre">⏸️</button>
+                                        <button class="action-btn delete" title="Supprimer">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">LB</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Luc Bernard</span>
+                                            <span class="user-id">#12843</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="user-type seller">Vendeur</span></td>
+                                <td>luc.bernard@email.com</td>
+                                <td>11/03/2024</td>
+                                <td><span class="status-badge pending">En attente</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view" title="Voir le profil">👁️</button>
+                                        <button class="action-btn edit" title="Modifier">✏️</button>
+                                        <button class="action-btn approve" title="Approuver">✅</button>
+                                        <button class="action-btn delete" title="Supprimer">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table-pagination">
+                    <div class="pagination-info">
+                        Affichage de 1 à 5 sur 2,847 utilisateurs
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" disabled>Précédent</button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-dots">...</span>
+                        <button class="pagination-btn">570</button>
+                        <button class="pagination-btn">Suivant</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signalements récents -->
+            <div class="reports-section">
+                <div class="section-header">
+                    <h2 class="section-title">Signalements récents</h2>
+                    <a href="#" class="btn btn-outline">Voir tous</a>
+                </div>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-header">
+                            <span class="report-type high">Priorité haute</span>
+                            <span class="report-date">Il y a 2h</span>
+                        </div>
+                        <h3 class="report-title">Produit contrefait signalé</h3>
+                        <p class="report-description">Un utilisateur a signalé un produit Apple potentiellement contrefait.</p>
+                        <div class="report-actions">
+                            <button class="btn btn-primary">Examiner</button>
+                            <button class="btn btn-secondary">Ignorer</button>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-header">
+                            <span class="report-type medium">Priorité moyenne</span>
+                            <span class="report-date">Il y a 4h</span>
+                        </div>
+                        <h3 class="report-title">Comportement inapproprié</h3>
+                        <p class="report-description">Messages inappropriés dans une conversation de vente.</p>
+                        <div class="report-actions">
+                            <button class="btn btn-primary">Examiner</button>
+                            <button class="btn btn-secondary">Ignorer</button>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-header">
+                            <span class="report-type low">Priorité basse</span>
+                            <span class="report-date">Il y a 1j</span>
+                        </div>
+                        <h3 class="report-title">Description incorrecte</h3>
+                        <p class="report-description">La description du produit ne correspond pas aux photos.</p>
+                        <div class="report-actions">
+                            <button class="btn btn-primary">Examiner</button>
+                            <button class="btn btn-secondary">Ignorer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="theme-toggle.js"></script>
+    <script>
+        // Gestion de la sélection multiple
+        document.getElementById('selectAllCheckbox').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.user-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // Fonctions d'administration
+        function exportData() {
+            alert('Fonctionnalité d\'export en cours de développement');
+        }
+
+        function refreshData() {
+            location.reload();
+        }
+
+        function selectAll() {
+            const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+            selectAllCheckbox.checked = !selectAllCheckbox.checked;
+            selectAllCheckbox.dispatchEvent(new Event('change'));
+        }
+
+        function bulkAction() {
+            const selectedUsers = document.querySelectorAll('.user-checkbox:checked');
+            if (selectedUsers.length === 0) {
+                alert('Veuillez sélectionner au moins un utilisateur');
+                return;
+            }
+            alert(`${selectedUsers.length} utilisateur(s) sélectionné(s)`);
+        }
+
+        // Gestion des actions sur les utilisateurs
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const action = this.className.split(' ')[1];
+                const userRow = this.closest('tr');
+                const userName = userRow.querySelector('.user-name').textContent;
+                
+                switch(action) {
+                    case 'view':
+                        alert(`Voir le profil de ${userName}`);
+                        break;
+                    case 'edit':
+                        alert(`Modifier ${userName}`);
+                        break;
+                    case 'suspend':
+                        if (confirm(`Suspendre ${userName} ?`)) {
+                            alert(`${userName} a été suspendu`);
+                        }
+                        break;
+                    case 'activate':
+                        if (confirm(`Réactiver ${userName} ?`)) {
+                            alert(`${userName} a été réactivé`);
+                        }
+                        break;
+                    case 'approve':
+                        if (confirm(`Approuver ${userName} ?`)) {
+                            alert(`${userName} a été approuvé`);
+                        }
+                        break;
+                    case 'delete':
+                        if (confirm(`Supprimer définitivement ${userName} ?`)) {
+                            alert(`${userName} a été supprimé`);
+                        }
+                        break;
+                }
+            });
+        });
+
+        // Recherche en temps réel
+        document.getElementById('userSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.admin-table tbody tr');
+            
+            rows.forEach(row => {
+                const userName = row.querySelector('.user-name').textContent.toLowerCase();
+                const userEmail = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                
+                if (userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Styles spécifiques à la page admin */
+        .admin-badge {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: var(--text-white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .admin-main {
+            padding: var(--spacing-xl) 0;
+            min-height: calc(100vh - 70px);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-2xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .page-actions {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            color: #22c55e;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        .admin-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            gap: var(--spacing-lg);
+        }
+
+        .search-section {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xs);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: var(--spacing-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .search-input:focus {
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            border: none;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            color: var(--text-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .filter-select {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .admin-table-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .admin-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .user-id {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .user-type {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .user-type.buyer {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .user-type.seller {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .status-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-badge.active {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-badge.suspended {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status-badge.pending {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .action-btn.view {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .action-btn.edit {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .action-btn.suspend {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .action-btn.activate {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .action-btn.approve {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .action-btn.delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .table-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .pagination-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .pagination-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--bg-secondary);
+        }
+
+        .pagination-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-dots {
+            color: var(--text-secondary);
+            padding: 0 var(--spacing-sm);
+        }
+
+        .reports-section {
+            margin-top: var(--spacing-2xl);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .report-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .report-type {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .report-type.high {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .report-type.medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .report-type.low {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .report-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .report-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .report-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.5;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        @media (max-width: 1024px) {
+            .page-header {
+                flex-direction: column;
+                gap: var(--spacing-lg
+

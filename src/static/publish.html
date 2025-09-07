@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publier une annonce - Kitalamarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Kitalamarket</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="search.html" class="nav-link">Explorer</a></li>
+                    <li><a href="publish.html" class="nav-link active">Vendre</a></li>
+                    <li><a href="chat.html" class="nav-link">Messages</a></li>
+                    <li><a href="dashboard.html" class="btn btn-primary">Mon compte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="publish-main">
+        <div class="container">
+            <!-- En-tête de la page -->
+            <div class="page-header">
+                <h1 class="page-title">Publier une annonce</h1>
+                <p class="page-subtitle">Vendez facilement vos articles en quelques étapes simples</p>
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span class="step-label">Photos</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span class="step-label">Détails</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span class="step-label">Prix</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span class="step-label">Publication</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de publication -->
+            <form class="publish-form" id="publishForm">
+                <!-- Étape 1: Photos -->
+                <div class="form-step active" id="step1">
+                    <div class="step-header">
+                        <h2 class="step-title">Ajoutez des photos</h2>
+                        <p class="step-description">Les photos de qualité augmentent vos chances de vente</p>
+                    </div>
+
+                    <div class="photo-upload-section">
+                        <div class="photo-upload-grid">
+                            <div class="photo-upload-main">
+                                <input type="file" id="mainPhoto" accept="image/*" multiple style="display: none;">
+                                <label for="mainPhoto" class="photo-upload-area">
+                                    <div class="upload-content">
+                                        <div class="upload-icon">📷</div>
+                                        <h3>Photo principale</h3>
+                                        <p>Cliquez pour ajouter une photo</p>
+                                        <span class="upload-hint">JPG, PNG jusqu'à 10MB</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="photo-upload-additional">
+                                <div class="additional-photo-slot">
+                                    <input type="file" id="photo2" accept="image/*" style="display: none;">
+                                    <label for="photo2" class="photo-slot">
+                                        <span class="slot-icon">+</span>
+                                    </label>
+                                </div>
+                                <div class="additional-photo-slot">
+                                    <input type="file" id="photo3" accept="image/*" style="display: none;">
+                                    <label for="photo3" class="photo-slot">
+                                        <span class="slot-icon">+</span>
+                                    </label>
+                                </div>
+                                <div class="additional-photo-slot">
+                                    <input type="file" id="photo4" accept="image/*" style="display: none;">
+                                    <label for="photo4" class="photo-slot">
+                                        <span class="slot-icon">+</span>
+                                    </label>
+                                </div>
+                                <div class="additional-photo-slot">
+                                    <input type="file" id="photo5" accept="image/*" style="display: none;">
+                                    <label for="photo5" class="photo-slot">
+                                        <span class="slot-icon">+</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-tips">
+                            <h4>💡 Conseils pour de meilleures photos</h4>
+                            <ul>
+                                <li>Utilisez un bon éclairage naturel</li>
+                                <li>Montrez l'article sous différents angles</li>
+                                <li>Incluez les détails importants et défauts</li>
+                                <li>Utilisez un arrière-plan neutre</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 2: Détails -->
+                <div class="form-step" id="step2">
+                    <div class="step-header">
+                        <h2 class="step-title">Décrivez votre article</h2>
+                        <p class="step-description">Plus votre description est précise, plus vous avez de chances de vendre</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="title" class="form-label">Titre de l'annonce *</label>
+                            <input type="text" id="title" class="form-input" placeholder="Ex: iPhone 13 Pro Max 256GB Bleu" required>
+                            <span class="form-hint">Soyez précis et incluez la marque, le modèle</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category" class="form-label">Catégorie *</label>
+                            <select id="category" class="form-select" required>
+                                <option value="">Choisir une catégorie</option>
+                                <option value="mode">👕 Mode</option>
+                                <option value="electronique">📱 Électronique</option>
+                                <option value="maison">🏠 Maison & Jardin</option>
+                                <option value="sport">⚽ Sport & Loisirs</option>
+                                <option value="auto">🚗 Auto & Moto</option>
+                                <option value="livres">📚 Livres</option>
+                                <option value="art">🎨 Art & Collection</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand" class="form-label">Marque</label>
+                            <input type="text" id="brand" class="form-input" placeholder="Ex: Apple, Nike, Zara...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="condition" class="form-label">État *</label>
+                            <div class="condition-options">
+                                <label class="condition-option">
+                                    <input type="radio" name="condition" value="new" required>
+                                    <div class="condition-card">
+                                        <div class="condition-icon">✨</div>
+                                        <h4>Neuf avec étiquettes</h4>
+                                        <p>Jamais porté, étiquettes attachées</p>
+                                    </div>
+                                </label>
+                                <label class="condition-option">
+                                    <input type="radio" name="condition" value="excellent" required>
+                                    <div class="condition-card">
+                                        <div class="condition-icon">⭐</div>
+                                        <h4>Très bon état</h4>
+                                        <p>Porté quelques fois, aucun défaut</p>
+                                    </div>
+                                </label>
+                                <label class="condition-option">
+                                    <input type="radio" name="condition" value="good" required>
+                                    <div class="condition-card">
+                                        <div class="condition-icon">👍</div>
+                                        <h4>Bon état</h4>
+                                        <p>Signes d'usure légers</p>
+                                    </div>
+                                </label>
+                                <label class="condition-option">
+                                    <input type="radio" name="condition" value="fair" required>
+                                    <div class="condition-card">
+                                        <div class="condition-icon">⚠️</div>
+                                        <h4>État correct</h4>
+                                        <p>Défauts visibles mais utilisable</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description" class="form-label">Description *</label>
+                            <textarea id="description" class="form-textarea" rows="6" placeholder="Décrivez votre article en détail : taille, couleur, matière, état, raison de la vente..." required></textarea>
+                            <div class="character-count">
+                                <span id="charCount">0</span>/1000 caractères
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size" class="form-label">Taille</label>
+                            <select id="size" class="form-select">
+                                <option value="">Sélectionner une taille</option>
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color" class="form-label">Couleur</label>
+                            <input type="text" id="color" class="form-input" placeholder="Ex: Bleu, Rouge, Multicolore...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 3: Prix -->
+                <div class="form-step" id="step3">
+                    <div class="step-header">
+                        <h2 class="step-title">Fixez votre prix</h2>
+                        <p class="step-description">Proposez un prix attractif pour vendre rapidement</p>
+                    </div>
+
+                    <div class="pricing-section">
+                        <div class="price-input-group">
+                            <label for="price" class="form-label">Prix de vente *</label>
+                            <div class="price-input-wrapper">
+                                <input type="number" id="price" class="price-input" placeholder="0" min="1" step="0.01" required>
+                                <span class="currency">€</span>
+                            </div>
+                            <span class="form-hint">Prix minimum : 1€</span>
+                        </div>
+
+                        <div class="price-suggestions">
+                            <h4>💰 Suggestions de prix</h4>
+                            <div class="suggestion-cards">
+                                <div class="suggestion-card" data-price="899">
+                                    <div class="suggestion-label">Prix du neuf</div>
+                                    <div class="suggestion-price">899€</div>
+                                </div>
+                                <div class="suggestion-card recommended" data-price="650">
+                                    <div class="suggestion-label">Recommandé</div>
+                                    <div class="suggestion-price">650€</div>
+                                    <div class="suggestion-badge">🔥 Vente rapide</div>
+                                </div>
+                                <div class="suggestion-card" data-price="750">
+                                    <div class="suggestion-label">Prix élevé</div>
+                                    <div class="suggestion-price">750€</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shipping-options">
+                            <h4>📦 Frais de port</h4>
+                            <div class="shipping-cards">
+                                <label class="shipping-option">
+                                    <input type="radio" name="shipping" value="buyer" required>
+                                    <div class="shipping-card">
+                                        <h5>À la charge de l'acheteur</h5>
+                                        <p>L'acheteur paie les frais de port</p>
+                                        <span class="shipping-price">Recommandé</span>
+                                    </div>
+                                </label>
+                                <label class="shipping-option">
+                                    <input type="radio" name="shipping" value="seller" required>
+                                    <div class="shipping-card">
+                                        <h5>Port offert</h5>
+                                        <p>Vous payez les frais de port</p>
+                                        <span class="shipping-price">~5-10€</span>
+                                    </div>
+                                </label>
+                                <label class="shipping-option">
+                                    <input type="radio" name="shipping" value="pickup" required>
+                                    <div class="shipping-card">
+                                        <h5>Remise en main propre</h5>
+                                        <p>Rencontre pour la remise</p>
+                                        <span class="shipping-price">Gratuit</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="earnings-summary">
+                            <h4>💵 Vos gains estimés</h4>
+                            <div class="earnings-breakdown">
+                                <div class="earnings-row">
+                                    <span>Prix de vente</span>
+                                    <span id="salePrice">0€</span>
+                                </div>
+                                <div class="earnings-row">
+                                    <span>Commission Kitalamarket (5%)</span>
+                                    <span id="commission">-0€</span>
+                                </div>
+                                <div class="earnings-row">
+                                    <span>Frais de paiement (3%)</span>
+                                    <span id="paymentFees">-0€</span>
+                                </div>
+                                <div class="earnings-row total">
+                                    <span>Vos gains</span>
+                                    <span id="totalEarnings">0€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 4: Publication -->
+                <div class="form-step" id="step4">
+                    <div class="step-header">
+                        <h2 class="step-title">Finaliser la publication</h2>
+                        <p class="step-description">Vérifiez les informations avant de publier votre annonce</p>
+                    </div>
+
+                    <div class="publication-section">
+                        <div class="preview-card">
+                            <h4>📋 Aperçu de votre annonce</h4>
+                            <div class="product-preview">
+                                <div class="preview-image">
+                                    <div class="placeholder-image">📷</div>
+                                </div>
+                                <div class="preview-details">
+                                    <h3 id="previewTitle">Titre de votre article</h3>
+                                    <p id="previewPrice">0€</p>
+                                    <p id="previewCondition">État</p>
+                                    <p id="previewDescription">Description...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="publication-options">
+                            <h4>⚡ Options de publication</h4>
+                            <div class="option-cards">
+                                <label class="option-card">
+                                    <input type="checkbox" id="boostAd">
+                                    <div class="option-content">
+                                        <div class="option-icon">🚀</div>
+                                        <div class="option-info">
+                                            <h5>Booster l'annonce</h5>
+                                            <p>Votre annonce apparaît en premier</p>
+                                            <span class="option-price">+2€</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" id="highlightAd">
+                                    <div class="option-content">
+                                        <div class="option-icon">⭐</div>
+                                        <div class="option-info">
+                                            <h5>Mettre en avant</h5>
+                                            <p>Annonce mise en évidence</p>
+                                            <span class="option-price">+1€</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="terms-section">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="acceptTerms" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    J'accepte les <a href="#" class="link">conditions d'utilisation</a> et 
+                                    la <a href="#" class="link">politique de confidentialité</a>
+                                </span>
+                            </label>
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="receiveNotifications">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    Je souhaite recevoir des notifications par email
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation des étapes -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
+                        ← Précédent
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">
+                        Suivant →
+                    </button>
+                    <button type="submit" class="btn btn-success" id="publishBtn" style="display: none;">
+                        🚀 Publier l'annonce
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="theme-toggle.js"></script>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        // Gestion des étapes
+        function showStep(step) {
+            // Masquer toutes les étapes
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            // Afficher l'étape courante
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Mettre à jour la barre de progression
+            document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
+                if (index < step) {
+                    stepEl.classList.add('active');
+                } else {
+                    stepEl.classList.remove('active');
+                }
+            });
+            
+            // Gérer les boutons de navigation
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const publishBtn = document.getElementById('publishBtn');
+            
+            prevBtn.style.display = step > 1 ? 'block' : 'none';
+            nextBtn.style.display = step < totalSteps ? 'block' : 'none';
+            publishBtn.style.display = step === totalSteps ? 'block' : 'none';
+        }
+
+        // Navigation entre les étapes
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (validateCurrentStep()) {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updatePreview();
+                }
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        // Validation des étapes
+        function validateCurrentStep() {
+            switch (currentStep) {
+                case 1:
+                    // Vérifier qu'au moins une photo est ajoutée
+                    const mainPhoto = document.getElementById('mainPhoto').files.length;
+                    if (mainPhoto === 0) {
+                        alert('Veuillez ajouter au moins une photo');
+                        return false;
+                    }
+                    return true;
+                case 2:
+                    // Vérifier les champs obligatoires
+                    const title = document.getElementById('title').value.trim();
+                    const category = document.getElementById('category').value;
+                    const condition = document.querySelector('input[name="condition"]:checked');
+                    const description = document.getElementById('description').value.trim();
+                    
+                    if (!title || !category || !condition || !description) {
+                        alert('Veuillez remplir tous les champs obligatoires');
+                        return false;
+                    }
+                    return true;
+                case 3:
+                    // Vérifier le prix et les options de livraison
+                    const price = document.getElementById('price').value;
+                    const shipping = document.querySelector('input[name="shipping"]:checked');
+                    
+                    if (!price || price < 1 || !shipping) {
+                        alert('Veuillez définir un prix et choisir une option de livraison');
+                        return false;
+                    }
+                    return true;
+                case 4:
+                    // Vérifier l'acceptation des conditions
+                    const acceptTerms = document.getElementById('acceptTerms').checked;
+                    if (!acceptTerms) {
+                        alert('Veuillez accepter les conditions d\'utilisation');
+                        return false;
+                    }
+                    return true;
+                default:
+                    return true;
+            }
+        }
+
+        // Gestion des photos
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const label = input.nextElementSibling;
+                        if (input.id === 'mainPhoto') {
+                            label.style.backgroundImage = `url(${e.target.result})`;
+                            label.style.backgroundSize = 'cover';
+                            label.style.backgroundPosition = 'center';
+                            label.querySelector('.upload-content').style.display = 'none';
+                        } else {
+                            label.style.backgroundImage = `url(${e.target.result})`;
+                            label.style.backgroundSize = 'cover';
+                            label.style.backgroundPosition = 'center';
+                            label.querySelector('.slot-icon').style.display = 'none';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        // Compteur de caractères pour la description
+        document.getElementById('description').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+            
+            if (count > 1000) {
+                this.value = this.value.substring(0, 1000);
+                document.getElementById('charCount').textContent = 1000;
+            }
+        });
+
+        // Suggestions de prix
+        document.querySelectorAll('.suggestion-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const price = card.dataset.price;
+                document.getElementById('price').value = price;
+                updateEarnings();
+            });
+        });
+
+        // Calcul des gains
+        document.getElementById('price').addEventListener('input', updateEarnings);
+
+        function updateEarnings() {
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const commission = price * 0.05;
+            const paymentFees = price * 0.03;
+            const earnings = price - commission - paymentFees;
+
+            document.getElementById('salePrice').textContent = `${price.toFixed(2)}€`;
+            document.getElementById('commission').textContent = `-${commission.toFixed(2)}€`;
+            document.getElementById('paymentFees').textContent = `-${paymentFees.toFixed(2)}€`;
+            document.getElementById('totalEarnings').textContent = `${Math.max(0, earnings).toFixed(2)}€`;
+        }
+
+        // Mise à jour de l'aperçu
+        function updatePreview() {
+            const title = document.getElementById('title').value || 'Titre de votre article';
+            const price = document.getElementById('price').value || '0';
+            const condition = document.querySelector('input[name="condition"]:checked');
+            const description = document.getElementById('description').value || 'Description...';
+
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewPrice').textContent = `${price}€`;
+            document.getElementById('previewCondition').textContent = condition ? condition.nextElementSibling.querySelector('h4').textContent : 'État';
+            document.getElementById('previewDescription').textContent = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+        }
+
+        // Soumission du formulaire
+        document.getElementById('publishForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateCurrentStep()) {
+                // Simuler la publication
+                const publishBtn = document.getElementById('publishBtn');
+                publishBtn.innerHTML = '⏳ Publication en cours...';
+                publishBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('🎉 Votre annonce a été publiée avec succès !');
+                    // Rediriger vers le tableau de bord
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            }
+        });
+
+        // Initialisation
+        showStep(1);
+    </script>
+
+    <style>
+        /* Styles spécifiques à la page publish */
+        .publish-main {
+            padding: var(--spacing-xl) 0;
+            min-height: calc(100vh - 70px);
+            background: var(--bg-secondary);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--text-primary);
+        }
+
+        .publish-form {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .form-step {
+            display: none;
+            padding: var(--spacing-2xl);
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .photo-upload-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .photo-upload-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .photo-upload-main {
+            aspect-ratio: 4/3;
+        }
+
+        .photo-upload-area {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-upload-area:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .upload-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .upload-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .upload-content p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .upload-hint {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .photo-upload-additional {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+        }
+
+        .additional-photo-slot {
+            aspect-ratio: 1;
+        }
+
+        .photo-slot {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-slot:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .slot-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .photo-tips {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+        }
+
+        .photo-tips h4 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .photo-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .photo-tips li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-secondary);
+        }
+
+        .photo-tips li:before {
+            content: "✓ ";
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(9, 177, 186, 0.1);
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+        }
+
+        .character-count {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+        }
+
+        .condition-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            grid-column: 1 / -1;
+        }
+
+        .condition-option {
+            cursor: pointer;
+        }
+
+        .condition-option input[type="radio"] {
+            display: none;
+        }
+
+        .condition-card {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .condition-option input[type="radio"]:checked + .condition-card {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .condition-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .condition-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .condition-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .price-input-group {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .price-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+
+        .price-input {
+            width: 100%;
+            padding: var(--spacing-lg);
+            padding-right: 40px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .currency {
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .price-suggestions,
+        .shipping-options,
+        .earnings-summary {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .price-suggestions h4,
+        .shipping-options h4,
+        .earnings-summary h4 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .suggestion-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .suggestion-card {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .suggestion-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .suggestion-card.recommended {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .suggestion-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .suggestion-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .suggestion-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: var(--text-white);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        .shipping-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .shipping-option {
+            cursor: pointer;
+        }
+
+        .shipping-option input[type="radio"] {
+            display: none;
+        }
+
+        .shipping-card {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .shipping-option input[type="radio"]:checked + .shipping-card {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .shipping-card h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .shipping-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .shipping-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .earnings-breakdown {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+        }
+
+        .earnings-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .earnings-row:last-child {
+            border-bottom: none;
+        }
+
+        .earnings-row.total {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-top: 2px solid var(--border-color);
+            margin-top: var(--spacing-sm);
+            padding-top: var(--spacing-md);
+        }
+
+        .publication-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .preview-card,
+        .publication-options {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .preview-card h4,
+        .publication-options h4 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .product-preview {
+            display: flex;
+            gap: var(--spacing-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+        }
+
+        .preview-image {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-md);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .placeholder-image {
+            font-size: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-details h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .preview-details p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .option-card {
+            cursor: pointer;
+        }
+
+        .option-card input[type="checkbox"] {
+            display: none;
+        }
+
+        .option-content {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .option-card input[type="checkbox"]:checked + .option-content {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .option-icon {
+            font-size: 1.5rem;
+        }
+
+        .option-info h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .option-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .option-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .terms-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked + .checkmark {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked + .checkmark:after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-white);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .checkbox-text {
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-xl);
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .progress-bar {
+                gap: var(--spacing-md);
+            }
+
+            .step-number {
+                width: 35px;
+                height: 35px;
+            }
+
+            .step-label {
+                font-size: 0.8rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .condition-options {
+                grid-template-columns: 1fr;
+            }
+
+            .suggestion-cards,
+            .shipping-cards,
+            .option-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-upload-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-preview {
+                flex-direction: column;
+            }
+
+            .preview-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</body>
+</html>
+

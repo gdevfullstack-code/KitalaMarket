@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 13 Pro Max - Kitalamarket</title>
+    <style>
+        :root {
+          --primary-color: #009688;
+          --primary-dark: #00796b;
+          --primary-light: #4db6ac;
+          --secondary-color: #ff5722;
+          --background-color: #f5f5f5;
+          --white: #ffffff;
+          --gray-light: #f0f0f0;
+          --gray-medium: #cccccc;
+          --gray-dark: #666666;
+          --text-dark: #333333;
+          --text-light: #777777;
+          --border-radius: 8px;
+          --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+          --transition: all 0.3s ease;
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: var(--text-dark);
+          background-color: var(--background-color);
+        }
+
+        /* Header */
+        .header {
+          background: var(--white);
+          box-shadow: var(--shadow);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          padding: 1rem 0;
+        }
+
+        .header-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          text-decoration: none;
+        }
+
+        .nav-menu {
+          display: flex;
+          list-style: none;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: var(--text-dark);
+          font-weight: 500;
+          transition: var(--transition);
+        }
+
+        .nav-link:hover {
+          color: var(--primary-color);
+        }
+
+        .cart-icon {
+          position: relative;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+          color: var(--primary-color);
+        }
+
+        .cart-count {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background: var(--secondary-color);
+          color: var(--white);
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          font-size: 0.8rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+          background: var(--white);
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .breadcrumb-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1rem;
+        }
+
+        .breadcrumb-list {
+          display: flex;
+          list-style: none;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        .breadcrumb-item {
+          color: var(--text-light);
+        }
+
+        .breadcrumb-link {
+          color: var(--primary-color);
+          text-decoration: none;
+        }
+
+        .breadcrumb-link:hover {
+          text-decoration: underline;
+        }
+
+        /* Product Container */
+        .product-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow);
+          padding: 1.5rem;
+        }
+
+        .main-image {
+          width: 100%;
+          height: 400px;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 6rem;
+          color: var(--gray-dark);
+          margin-bottom: 1rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .image-badge {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          background: var(--secondary-color);
+          color: var(--white);
+          padding: 0.5rem 1rem;
+          border-radius: var(--border-radius);
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+
+        .favorite-btn {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: rgba(255, 255, 255, 0.9);
+          border: none;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          cursor: pointer;
+          font-size: 1.5rem;
+          transition: var(--transition);
+        }
+
+        .favorite-btn:hover {
+          background: var(--primary-color);
+          color: var(--white);
+        }
+
+        .thumbnail-gallery {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.5rem;
+        }
+
+        .thumbnail {
+          width: 100%;
+          height: 80px;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          color: var(--gray-dark);
+          cursor: pointer;
+          border: 2px solid transparent;
+          transition: var(--transition);
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+          border-color: var(--primary-color);
+        }
+
+        /* Product Info */
+        .product-info {
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow);
+          padding: 2rem;
+        }
+
+        .product-title {
+          font-size: 2rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: var(--text-dark);
+        }
+
+        .product-price {
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          margin-bottom: 1rem;
+        }
+
+        .price-original {
+          font-size: 1.2rem;
+          color: var(--text-light);
+          text-decoration: line-through;
+          margin-left: 1rem;
+        }
+
+        .product-rating {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .stars {
+          display: flex;
+          gap: 0.1rem;
+        }
+
+        .star {
+          color: #ffc107;
+          font-size: 1.2rem;
+        }
+
+        .rating-text {
+          color: var(--text-light);
+          margin-left: 0.5rem;
+        }
+
+        .product-condition {
+          display: inline-block;
+          background: var(--primary-light);
+          color: var(--white);
+          padding: 0.5rem 1rem;
+          border-radius: var(--border-radius);
+          font-weight: 500;
+          margin-bottom: 1.5rem;
+        }
+
+        .product-description {
+          margin-bottom: 2rem;
+        }
+
+        .description-title {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: var(--text-dark);
+        }
+
+        .description-text {
+          line-height: 1.8;
+          color: var(--text-dark);
+        }
+
+        .product-features {
+          margin-bottom: 2rem;
+        }
+
+        .features-list {
+          list-style: none;
+        }
+
+        .feature-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+          padding: 0.5rem;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+        }
+
+        .feature-icon {
+          color: var(--primary-color);
+        }
+
+        /* Seller Info */
+        .seller-info {
+          background: var(--gray-light);
+          padding: 1.5rem;
+          border-radius: var(--border-radius);
+          margin-bottom: 2rem;
+        }
+
+        .seller-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .seller-avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: var(--primary-color);
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+
+        .seller-details h3 {
+          font-size: 1.2rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .seller-badge {
+          background: var(--primary-color);
+          color: var(--white);
+          padding: 0.2rem 0.5rem;
+          border-radius: 8px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          margin-left: 0.5rem;
+        }
+
+        .seller-rating {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          color: var(--text-light);
+        }
+
+        .seller-actions {
+          display: flex;
+          gap: 1rem;
+        }
+
+        /* Purchase Actions */
+        .purchase-actions {
+          margin-bottom: 2rem;
+        }
+
+        .quantity-selector {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .quantity-label {
+          font-weight: 500;
+        }
+
+        .quantity-controls {
+          display: flex;
+          align-items: center;
+          border: 1px solid var(--gray-medium);
+          border-radius: var(--border-radius);
+          overflow: hidden;
+        }
+
+        .quantity-btn {
+          background: var(--white);
+          border: none;
+          padding: 0.5rem 0.75rem;
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+          background: var(--gray-light);
+        }
+
+        .quantity-input {
+          border: none;
+          padding: 0.5rem;
+          width: 60px;
+          text-align: center;
+          font-size: 1rem;
+        }
+
+        .btn {
+          padding: 0.75rem 1.5rem;
+          border: none;
+          border-radius: var(--border-radius);
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: var(--transition);
+          text-decoration: none;
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+          background: var(--primary-color);
+          color: var(--white);
+        }
+
+        .btn-primary:hover {
+          background: var(--primary-dark);
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+          background: var(--white);
+          color: var(--primary-color);
+          border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+          background: var(--primary-color);
+          color: var(--white);
+        }
+
+        .btn-chat {
+          background: var(--secondary-color);
+          color: var(--white);
+        }
+
+        .btn-chat:hover {
+          background: #d84315;
+        }
+
+        /* Delivery Options */
+        .delivery-options {
+          margin-bottom: 2rem;
+        }
+
+        .delivery-title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+
+        .delivery-option {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+          padding: 0.5rem;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+        }
+
+        .delivery-icon {
+          color: var(--primary-color);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+          grid-column: 1 / -1;
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow);
+          padding: 2rem;
+          margin-top: 2rem;
+        }
+
+        .reviews-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
+
+        .reviews-title {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+
+        .reviews-summary {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .average-rating {
+          font-size: 2rem;
+          font-weight: bold;
+          color: var(--primary-color);
+        }
+
+        .rating-breakdown {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 0.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .rating-bar {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .bar-fill {
+          flex: 1;
+          height: 8px;
+          background: var(--gray-light);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .bar-progress {
+          height: 100%;
+          background: #ffc107;
+          transition: width 0.3s ease;
+        }
+
+        .reviews-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .review-item {
+          border-bottom: 1px solid var(--gray-light);
+          padding-bottom: 1.5rem;
+        }
+
+        .review-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .reviewer-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--primary-color);
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+
+        .review-rating {
+          display: flex;
+          gap: 0.1rem;
+        }
+
+        .review-date {
+          color: var(--text-light);
+          font-size: 0.9rem;
+        }
+
+        .review-text {
+          line-height: 1.6;
+          color: var(--text-dark);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+          position: fixed;
+          top: 0;
+          right: -400px;
+          width: 400px;
+          height: 100%;
+          background: var(--white);
+          box-shadow: var(--shadow-hover);
+          z-index: 2000;
+          transition: right 0.3s ease;
+          overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+          right: 0;
+        }
+
+        .cart-header {
+          padding: 1.5rem;
+          border-bottom: 1px solid var(--gray-medium);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .cart-title {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+
+        .cart-close {
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: var(--text-light);
+        }
+
+        .cart-content {
+          padding: 1.5rem;
+        }
+
+        .cart-item {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid var(--gray-light);
+        }
+
+        .cart-item-image {
+          width: 80px;
+          height: 80px;
+          background: var(--gray-light);
+          border-radius: var(--border-radius);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          color: var(--gray-dark);
+        }
+
+        .cart-item-info {
+          flex: 1;
+        }
+
+        .cart-item-title {
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+          color: var(--primary-color);
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+
+        .cart-total {
+          border-top: 2px solid var(--primary-color);
+          padding-top: 1rem;
+          margin-top: 1rem;
+        }
+
+        .total-line {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+        }
+
+        .total-final {
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .product-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          
+          .cart-sidebar {
+            width: 100%;
+            right: -100%;
+          }
+          
+          .thumbnail-gallery {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          
+          .seller-actions {
+            flex-direction: column;
+          }
+          
+          .reviews-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+          }
+          
+          .rating-breakdown {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">🛒 Kitalamarket</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="search.html" class="nav-link">Rechercher</a></li>
+                    <li><a href="publish.html" class="nav-link">Vendre</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Mon compte</a></li>
+                    <li>
+                        <div class="cart-icon" onclick="toggleCart()">
+                            🛒
+                            <span class="cart-count" id="cartCount">1</span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-content">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+                <li class="breadcrumb-item">›</li>
+                <li class="breadcrumb-item"><a href="search.html" class="breadcrumb-link">Électronique</a></li>
+                <li class="breadcrumb-item">›</li>
+                <li class="breadcrumb-item">iPhone 13 Pro Max</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Container -->
+    <div class="product-container">
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+            <div class="main-image">
+                📱
+                <div class="image-badge">Nouveau</div>
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+            </div>
+            <div class="thumbnail-gallery">
+                <div class="thumbnail active">📱</div>
+                <div class="thumbnail">📷</div>
+                <div class="thumbnail">🔋</div>
+                <div class="thumbnail">📦</div>
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1 class="product-title">iPhone 13 Pro Max 256GB Bleu Alpin</h1>
+            
+            <div class="product-price">
+                899 €
+                <span class="price-original">1,199 €</span>
+            </div>
+            
+            <div class="product-rating">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <span class="rating-text">4.8/5 (24 avis)</span>
+            </div>
+            
+            <div class="product-condition">✨ Comme neuf</div>
+            
+            <div class="product-description">
+                <h3 class="description-title">Description</h3>
+                <p class="description-text">
+                    iPhone 13 Pro Max en excellent état, utilisé seulement 6 mois. Aucune rayure, 
+                    écran parfait. Vendu avec boîte d'origine, chargeur Lightning et écouteurs. 
+                    Batterie à 98% de capacité. Débloqué tous opérateurs.
+                </p>
+            </div>
+            
+            <div class="product-features">
+                <h3 class="description-title">Caractéristiques</h3>
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <span>Écran Super Retina XDR 6,7"</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">💾</span>
+                        <span>Stockage 256 GB</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">📷</span>
+                        <span>Triple caméra 12 MP</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">🔋</span>
+                        <span>Batterie 98% de capacité</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">🔓</span>
+                        <span>Débloqué tous opérateurs</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Seller Info -->
+            <div class="seller-info">
+                <div class="seller-header">
+                    <div class="seller-avatar">JD</div>
+                    <div class="seller-details">
+                        <h3>Jean Dupont <span class="seller-badge">PRO</span></h3>
+                        <div class="seller-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span>4.9/5 (127 ventes)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="seller-actions">
+                    <button class="btn btn-secondary">Voir le profil</button>
+                    <button class="btn btn-chat" onclick="window.location.href='chat.html'">💬 Contacter</button>
+                </div>
+            </div>
+
+            <!-- Quantity & Purchase -->
+            <div class="purchase-actions">
+                <div class="quantity-selector">
+                    <span class="quantity-label">Quantité:</span>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="addToCart()">🛒 Ajouter au panier</button>
+                <button class="btn btn-secondary">💳 Acheter maintenant</button>
+            </div>
+
+            <!-- Delivery Options -->
+            <div class="delivery-options">
+                <h3 class="delivery-title">Options de livraison</h3>
+                <div class="delivery-option">
+                    <span class="delivery-icon">🤝</span>
+                    <span>Remise en main propre - Gratuit</span>
+                </div>
+                <div class="delivery-option">
+                    <span class="delivery-icon">📦</span>
+                    <span>Envoi postal - 8,90 €</span>
+                </div>
+                <div class="delivery-option">
+                    <span class="delivery-icon">🚚</span>
+                    <span>Livraison express - 15,90 €</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <div class="reviews-header">
+                <h2 class="reviews-title">Avis et commentaires</h2>
+                <div class="reviews-summary">
+                    <div class="average-rating">4.8</div>
+                    <div>
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <div>Basé sur 24 avis</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rating-breakdown">
+                <div class="rating-bar">
+                    <span>5★</span>
+                    <div class="bar-fill">
+                        <div class="bar-progress" style="width: 75%"></div>
+                    </div>
+                    <span>18</span>
+                </div>
+                <div class="rating-bar">
+                    <span>4★</span>
+                    <div class="bar-fill">
+                        <div class="bar-progress" style="width: 20%"></div>
+                    </div>
+                    <span>5</span>
+                </div>
+                <div class="rating-bar">
+                    <span>3★</span>
+                    <div class="bar-fill">
+                        <div class="bar-progress" style="width: 4%"></div>
+                    </div>
+                    <span>1</span>
+                </div>
+                <div class="rating-bar">
+                    <span>2★</span>
+                    <div class="bar-fill">
+                        <div class="bar-progress" style="width: 0%"></div>
+                    </div>
+                    <span>0</span>
+                </div>
+                <div class="rating-bar">
+                    <span>1★</span>
+                    <div class="bar-fill">
+                        <div class="bar-progress" style="width: 0%"></div>
+                    </div>
+                    <span>0</span>
+                </div>
+            </div>
+
+            <div class="reviews-list">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">ML</div>
+                            <div>
+                                <div><strong>Marie Leroy</strong></div>
+                                <div class="review-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Il y a 3 jours</div>
+                    </div>
+                    <p class="review-text">
+                        Excellent vendeur ! iPhone reçu rapidement, exactement comme décrit. 
+                        État impeccable, aucune surprise. Transaction parfaite, je recommande vivement.
+                    </p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">PD</div>
+                            <div>
+                                <div><strong>Pierre Dubois</strong></div>
+                                <div class="review-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Il y a 1 semaine</div>
+                    </div>
+                    <p class="review-text">
+                        Très satisfait de mon achat. Le téléphone est en parfait état, 
+                        livraison rapide et vendeur très réactif. Prix très correct pour la qualité.
+                    </p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">SB</div>
+                            <div>
+                                <div><strong>Sophie Bernard</strong></div>
+                                <div class="review-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Il y a 2 semaines</div>
+                    </div>
+                    <p class="review-text">
+                        Bon produit dans l'ensemble. Quelques micro-rayures sur les tranches 
+                        mais rien de grave. Vendeur honnête et communication fluide.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Mon panier</h3>
+            <button class="cart-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-content">
+            <div class="cart-item">
+                <div class="cart-item-image">📱</div>
+                <div class="cart-item-info">
+                    <div class="cart-item-title">iPhone 13 Pro Max 256GB</div>
+                    <div class="cart-item-price">899 €</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-total">
+                <div class="total-line">
+                    <span>Sous-total:</span>
+                    <span>899 €</span>
+                </div>
+                <div class="total-line">
+                    <span>Livraison:</span>
+                    <span>8,90 €</span>
+                </div>
+                <div class="total-line total-final">
+                    <span>Total:</span>
+                    <span>907,90 €</span>
+                </div>
+                
+                <button class="btn btn-primary">Finaliser la commande</button>
+                <button class="btn btn-secondary">Continuer les achats</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cartCount = 1;
+
+        // Toggle cart sidebar
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartSidebar.classList.toggle('open');
+        }
+
+        // Toggle favorite
+        function toggleFavorite(btn) {
+            if (btn.textContent === '♡') {
+                btn.textContent = '♥';
+                btn.style.color = 'red';
+            } else {
+                btn.textContent = '♡';
+                btn.style.color = '';
+            }
+        }
+
+        // Change quantity
+        function changeQuantity(delta) {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            let newValue = currentValue + delta;
+            
+            if (newValue >= 1) {
+                quantityInput.value = newValue;
+            }
+        }
+
+        // Add to cart
+        function addToCart() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            cartCount += quantity;
+            document.getElementById('cartCount').textContent = cartCount;
+            
+            // Animation
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.animation = 'bounce 0.5s ease';
+            setTimeout(() => {
+                cartIcon.style.animation = '';
+            }, 500);
+            
+            // Show success message
+            alert(`${quantity} article(s) ajouté(s) au panier !`);
+        }
+
+        // Thumbnail gallery
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.product-gallery, .product-info, .reviews-section');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Close cart when clicking outside
+        document.addEventListener('click', function(e) {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartIcon = document.querySelector('.cart-icon');
+            
+            if (!cartSidebar.contains(e.target) && !cartIcon.contains(e.target) && cartSidebar.classList.contains('open')) {
+                cartSidebar.classList.remove('open');
+            }
+        });
+
+        // Add bounce animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                60% {
+                    transform: translateY(-5px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+

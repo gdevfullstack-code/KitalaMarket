@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - Kitalamarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Kitalamarket</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="search.html" class="nav-link active">Explorer</a></li>
+                    <li><a href="publish.html" class="nav-link">Vendre</a></li>
+                    <li><a href="auth.html" class="nav-link">Connexion</a></li>
+                    <li><a href="dashboard.html" class="btn btn-primary">Mon compte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Barre de recherche principale -->
+    <section class="search-hero">
+        <div class="container">
+            <div class="search-box-container">
+                <div class="search-box-large">
+                    <input type="text" class="search-input-large" placeholder="Rechercher des produits, marques, catégories..." id="mainSearch">
+                    <button class="search-btn-large">
+                        <span>🔍</span>
+                    </button>
+                </div>
+                <div class="search-filters-quick">
+                    <button class="filter-chip active" data-category="all">Tout</button>
+                    <button class="filter-chip" data-category="mode">Mode</button>
+                    <button class="filter-chip" data-category="electronique">Électronique</button>
+                    <button class="filter-chip" data-category="maison">Maison</button>
+                    <button class="filter-chip" data-category="sport">Sport</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu principal -->
+    <main class="search-main">
+        <div class="container">
+            <div class="search-layout">
+                <!-- Sidebar des filtres -->
+                <aside class="filters-sidebar">
+                    <div class="filters-header">
+                        <h3>Filtres</h3>
+                        <button class="filters-reset">Réinitialiser</button>
+                    </div>
+
+                    <!-- Filtre par catégorie -->
+                    <div class="filter-section">
+                        <h4 class="filter-title">Catégorie</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="mode">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Mode</span>
+                                <span class="option-count">(2,847)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="electronique">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Électronique</span>
+                                <span class="option-count">(1,523)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="maison">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Maison & Jardin</span>
+                                <span class="option-count">(956)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="sport">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Sport & Loisirs</span>
+                                <span class="option-count">(742)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="auto">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Auto & Moto</span>
+                                <span class="option-count">(428)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Filtre par prix -->
+                    <div class="filter-section">
+                        <h4 class="filter-title">Prix</h4>
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <input type="number" class="price-input" placeholder="Min" id="priceMin">
+                                <span class="price-separator">-</span>
+                                <input type="number" class="price-input" placeholder="Max" id="priceMax">
+                            </div>
+                            <div class="price-slider">
+                                <input type="range" class="range-slider" min="0" max="2000" value="0" id="rangeMin">
+                                <input type="range" class="range-slider" min="0" max="2000" value="2000" id="rangeMax">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtre par état -->
+                    <div class="filter-section">
+                        <h4 class="filter-title">État</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="condition" value="new">
+                                <span class="radiomark"></span>
+                                <span class="option-text">Neuf avec étiquettes</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="condition" value="very-good">
+                                <span class="radiomark"></span>
+                                <span class="option-text">Très bon état</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="condition" value="good">
+                                <span class="radiomark"></span>
+                                <span class="option-text">Bon état</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="condition" value="fair">
+                                <span class="radiomark"></span>
+                                <span class="option-text">État correct</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Filtre par marque -->
+                    <div class="filter-section">
+                        <h4 class="filter-title">Marques populaires</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="brand" value="nike">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Nike</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="brand" value="adidas">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Adidas</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="brand" value="zara">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Zara</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="brand" value="apple">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Apple</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Filtre par localisation -->
+                    <div class="filter-section">
+                        <h4 class="filter-title">Localisation</h4>
+                        <div class="location-filter">
+                            <input type="text" class="form-input" placeholder="Ville ou code postal">
+                            <div class="distance-selector">
+                                <label>Rayon de recherche</label>
+                                <select class="form-input">
+                                    <option value="5">5 km</option>
+                                    <option value="10">10 km</option>
+                                    <option value="25" selected>25 km</option>
+                                    <option value="50">50 km</option>
+                                    <option value="100">100 km</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Contenu principal -->
+                <div class="search-content">
+                    <!-- Header des résultats -->
+                    <div class="results-header">
+                        <div class="results-info">
+                            <h2 class="results-title">Résultats de recherche</h2>
+                            <p class="results-count">1,247 articles trouvés</p>
+                        </div>
+                        <div class="results-controls">
+                            <div class="sort-dropdown">
+                                <select class="form-input">
+                                    <option value="relevance">Pertinence</option>
+                                    <option value="price-asc">Prix croissant</option>
+                                    <option value="price-desc">Prix décroissant</option>
+                                    <option value="date-desc">Plus récents</option>
+                                    <option value="rating">Mieux notés</option>
+                                </select>
+                            </div>
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid">
+                                    <span>⊞</span>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <span>☰</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grille de produits -->
+                    <div class="products-grid grid-3" id="productsGrid">
+                        <!-- Produit 1 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">📱</div>
+                            <div class="product-info">
+                                <h3 class="product-title">iPhone 13 Pro Max 256GB</h3>
+                                <p class="product-price">1,099€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Paris 15e</span>
+                                    <span class="product-rating">⭐ 4.9</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Très bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produit 2 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">👟</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Nike Air Max 270 Blanc</h3>
+                                <p class="product-price">89€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Lyon 3e</span>
+                                    <span class="product-rating">⭐ 4.7</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-secondary">Bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produit 3 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">💻</div>
+                            <div class="product-info">
+                                <h3 class="product-title">MacBook Air M2 13"</h3>
+                                <p class="product-price">999€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Marseille</span>
+                                    <span class="product-rating">⭐ 4.8</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Neuf</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produit 4 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">🎧</div>
+                            <div class="product-info">
+                                <h3 class="product-title">AirPods Pro 2ème génération</h3>
+                                <p class="product-price">199€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Toulouse</span>
+                                    <span class="product-rating">⭐ 4.6</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Très bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produit 5 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">👕</div>
+                            <div class="product-info">
+                                <h3 class="product-title">T-shirt Lacoste Polo</h3>
+                                <p class="product-price">45€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Nice</span>
+                                    <span class="product-rating">⭐ 4.5</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-secondary">Bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produit 6 -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">📷</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Canon EOS R6 Mark II</h3>
+                                <p class="product-price">1,899€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Bordeaux</span>
+                                    <span class="product-rating">⭐ 4.9</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Neuf</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Répéter pour plus de produits -->
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">🎮</div>
+                            <div class="product-info">
+                                <h3 class="product-title">PlayStation 5 + Manette</h3>
+                                <p class="product-price">499€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Lille</span>
+                                    <span class="product-rating">⭐ 4.8</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Très bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">⌚</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Apple Watch Series 8</h3>
+                                <p class="product-price">349€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Nantes</span>
+                                    <span class="product-rating">⭐ 4.7</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-secondary">Bon état</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="window.location.href='product.html'">
+                            <div class="product-image">👜</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Sac Louis Vuitton</h3>
+                                <p class="product-price">850€</p>
+                                <div class="product-meta">
+                                    <span class="product-location">📍 Cannes</span>
+                                    <span class="product-rating">⭐ 4.9</span>
+                                </div>
+                                <div class="product-badges">
+                                    <span class="badge badge-primary">Très bon état</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn" disabled>Précédent</button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">4</button>
+                        <span class="pagination-dots">...</span>
+                        <button class="pagination-btn">12</button>
+                        <button class="pagination-btn">Suivant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="theme-toggle.js"></script>
+    <script>
+        // Gestion des filtres rapides
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                // Ici on pourrait filtrer les résultats
+            });
+        });
+
+        // Gestion du changement de vue
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.dataset.view;
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const grid = document.getElementById('productsGrid');
+                if (view === 'list') {
+                    grid.className = 'products-list';
+                } else {
+                    grid.className = 'products-grid grid-3';
+                }
+            });
+        });
+
+        // Gestion des sliders de prix
+        const rangeMin = document.getElementById('rangeMin');
+        const rangeMax = document.getElementById('rangeMax');
+        const priceMin = document.getElementById('priceMin');
+        const priceMax = document.getElementById('priceMax');
+
+        function updatePriceInputs() {
+            priceMin.value = rangeMin.value;
+            priceMax.value = rangeMax.value;
+        }
+
+        rangeMin.addEventListener('input', updatePriceInputs);
+        rangeMax.addEventListener('input', updatePriceInputs);
+
+        // Réinitialiser les filtres
+        document.querySelector('.filters-reset').addEventListener('click', () => {
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            rangeMin.value = 0;
+            rangeMax.value = 2000;
+            updatePriceInputs();
+        });
+    </script>
+
+    <style>
+        /* Styles spécifiques à la page de recherche */
+        .search-hero {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .search-box-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-box-large {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xs);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .search-input-large {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: var(--spacing-lg);
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .search-input-large:focus {
+            outline: none;
+        }
+
+        .search-btn-large {
+            background: var(--primary-color);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            color: var(--text-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .search-btn-large:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .search-filters-quick {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip.active,
+        .filter-chip:hover {
+            background: var(--primary-color);
+            color: var(--text-white);
+            border-color: var(--primary-color);
+        }
+
+        .search-main {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .search-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .filters-sidebar {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .filters-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .filters-reset {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .filter-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .filter-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: var(--spacing-xs) 0;
+        }
+
+        .filter-option input {
+            margin-right: var(--spacing-sm);
+        }
+
+        .option-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .option-count {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .price-range {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .price-inputs {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .price-input {
+            width: 80px;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+
+        .price-separator {
+            color: var(--text-secondary);
+        }
+
+        .price-slider {
+            position: relative;
+            height: 20px;
+        }
+
+        .range-slider {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .location-filter {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .distance-selector label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .results-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .results-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .sort-dropdown select {
+            min-width: 150px;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-xs);
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm);
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        .products-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .products-list .product-card {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-lg);
+        }
+
+        .products-list .product-image {
+            width: 100px;
+            height: 100px;
+            margin-right: var(--spacing-lg);
+        }
+
+        .product-badges {
+            margin-top: var(--spacing-sm);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .pagination-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--bg-secondary);
+        }
+
+        .pagination-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-dots {
+            color: var(--text-secondary);
+            padding: 0 var(--spacing-sm);
+        }
+
+        @media (max-width: 1024px) {
+            .search-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+                margin-bottom: var(--spacing-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-filters-quick {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: var(--spacing-sm);
+            }
+
+            .results-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                align-items: flex-start;
+            }
+
+            .results-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-box-large {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</body>
+</html>
+

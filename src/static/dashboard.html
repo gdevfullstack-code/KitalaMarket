@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Kitalamarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Kitalamarket</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="search.html" class="nav-link">Explorer</a></li>
+                    <li><a href="publish.html" class="nav-link">Vendre</a></li>
+                    <li><a href="chat.html" class="nav-link">Messages</a></li>
+                    <li><a href="dashboard.html" class="nav-link active">Mon compte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- En-tête du profil -->
+            <div class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMwOUIxQkEiLz4KPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5KRDwvdGV4dD4KPHN2Zz4=" alt="Jean Dupont">
+                        <div class="profile-badge">⭐</div>
+                    </div>
+                    <div class="profile-details">
+                        <h1 class="profile-name">Jean Dupont</h1>
+                        <p class="profile-username">@jeandupont</p>
+                        <div class="profile-stats">
+                            <span class="stat-item">
+                                <span class="stat-number">4.8</span>
+                                <span class="stat-label">⭐ Note</span>
+                            </span>
+                            <span class="stat-item">
+                                <span class="stat-number">127</span>
+                                <span class="stat-label">Avis</span>
+                            </span>
+                            <span class="stat-item">
+                                <span class="stat-number">3 ans</span>
+                                <span class="stat-label">Membre depuis</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-outline" onclick="editProfile()">
+                        <span>✏️</span>
+                        Modifier le profil
+                    </button>
+                    <button class="btn btn-primary" onclick="goToPublish()">
+                        <span>📦</span>
+                        Vendre un article
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistiques rapides -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">1,247€</h3>
+                        <p class="stat-description">Gains totaux</p>
+                        <span class="stat-change positive">+15% ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">23</h3>
+                        <p class="stat-description">Articles vendus</p>
+                        <span class="stat-change positive">+3 ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">1,456</h3>
+                        <p class="stat-description">Vues totales</p>
+                        <span class="stat-change positive">+8% ce mois</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">5</h3>
+                        <p class="stat-description">Messages non lus</p>
+                        <span class="stat-change">Nouveaux</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation des onglets -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="selling">
+                    <span>📦</span>
+                    Mes ventes (8)
+                </button>
+                <button class="tab-btn" data-tab="purchases">
+                    <span>🛍️</span>
+                    Mes achats (15)
+                </button>
+                <button class="tab-btn" data-tab="favorites">
+                    <span>❤️</span>
+                    Favoris (42)
+                </button>
+                <button class="tab-btn" data-tab="reviews">
+                    <span>⭐</span>
+                    Avis (127)
+                </button>
+                <button class="tab-btn" data-tab="settings">
+                    <span>⚙️</span>
+                    Paramètres
+                </button>
+            </div>
+
+            <!-- Contenu des onglets -->
+            <div class="tab-content">
+                <!-- Onglet Mes ventes -->
+                <div class="tab-panel active" id="selling">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Mes articles en vente</h2>
+                        <div class="panel-actions">
+                            <select class="filter-select">
+                                <option value="all">Tous les statuts</option>
+                                <option value="active">En ligne</option>
+                                <option value="sold">Vendus</option>
+                                <option value="draft">Brouillons</option>
+                            </select>
+                            <button class="btn btn-primary" onclick="goToPublish()">
+                                <span>+</span>
+                                Ajouter un article
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5OxPC90ZXh0Pgo8L3N2Zz4=" alt="iPhone 13 Pro Max">
+                                <div class="product-status active">En ligne</div>
+                                <div class="product-actions">
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Statistiques">📊</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">iPhone 13 Pro Max 256GB</h3>
+                                <p class="product-price">1,099€</p>
+                                <div class="product-stats">
+                                    <span class="stat">👁️ 234 vues</span>
+                                    <span class="stat">❤️ 12 favoris</span>
+                                </div>
+                                <p class="product-date">Publié il y a 3 jours</p>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GfPC90ZXh0Pgo8L3N2Zz4=" alt="Nike Air Max">
+                                <div class="product-status sold">Vendu</div>
+                                <div class="product-actions">
+                                    <button class="action-btn" title="Voir la vente">👁️</button>
+                                    <button class="action-btn" title="Statistiques">📊</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Nike Air Max 270 Blanc</h3>
+                                <p class="product-price">89€</p>
+                                <div class="product-stats">
+                                    <span class="stat">👁️ 156 vues</span>
+                                    <span class="stat">❤️ 8 favoris</span>
+                                </div>
+                                <p class="product-date">Vendu il y a 1 semaine</p>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5qXPC90ZXh0Pgo8L3N2Zz4=" alt="Veste Zara">
+                                <div class="product-status draft">Brouillon</div>
+                                <div class="product-actions">
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Publier">🚀</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Veste en cuir Zara</h3>
+                                <p class="product-price">75€</p>
+                                <div class="product-stats">
+                                    <span class="stat">Brouillon</span>
+                                </div>
+                                <p class="product-date">Créé il y a 2 jours</p>
+                            </div>
+                        </div>
+
+                        <div class="add-product-card" onclick="goToPublish()">
+                            <div class="add-product-content">
+                                <div class="add-icon">+</div>
+                                <h3>Ajouter un article</h3>
+                                <p>Vendez vos articles facilement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet Mes achats -->
+                <div class="tab-panel" id="purchases">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Mes achats</h2>
+                        <select class="filter-select">
+                            <option value="all">Tous les achats</option>
+                            <option value="delivered">Livrés</option>
+                            <option value="shipping">En cours</option>
+                            <option value="pending">En attente</option>
+                        </select>
+                    </div>
+
+                    <div class="purchases-list">
+                        <div class="purchase-item">
+                            <div class="purchase-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn4eTPC90ZXh0Pgo8L3N2Zz4=" alt="MacBook Air">
+                            </div>
+                            <div class="purchase-details">
+                                <h3 class="purchase-title">MacBook Air M2 13"</h3>
+                                <p class="purchase-seller">Vendu par Marie Leblanc</p>
+                                <p class="purchase-price">999€</p>
+                                <div class="purchase-status delivered">
+                                    <span class="status-icon">✅</span>
+                                    Livré le 12 mars 2024
+                                </div>
+                            </div>
+                            <div class="purchase-actions">
+                                <button class="btn btn-outline">Laisser un avis</button>
+                                <button class="btn btn-secondary">Contacter</button>
+                            </div>
+                        </div>
+
+                        <div class="purchase-item">
+                            <div class="purchase-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn46nPC90ZXh0Pgo8L3N2Zz4=" alt="AirPods Pro">
+                            </div>
+                            <div class="purchase-details">
+                                <h3 class="purchase-title">AirPods Pro 2ème génération</h3>
+                                <p class="purchase-seller">Vendu par Pierre Martin</p>
+                                <p class="purchase-price">199€</p>
+                                <div class="purchase-status shipping">
+                                    <span class="status-icon">🚚</span>
+                                    En cours de livraison
+                                </div>
+                            </div>
+                            <div class="purchase-actions">
+                                <button class="btn btn-outline">Suivre le colis</button>
+                                <button class="btn btn-secondary">Contacter</button>
+                            </div>
+                        </div>
+
+                        <div class="purchase-item">
+                            <div class="purchase-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GTPC90ZXh0Pgo8L3N2Zz4=" alt="T-shirt">
+                            </div>
+                            <div class="purchase-details">
+                                <h3 class="purchase-title">T-shirt Lacoste Blanc</h3>
+                                <p class="purchase-seller">Vendu par Sophie Durand</p>
+                                <p class="purchase-price">45€</p>
+                                <div class="purchase-status pending">
+                                    <span class="status-icon">⏳</span>
+                                    En attente de confirmation
+                                </div>
+                            </div>
+                            <div class="purchase-actions">
+                                <button class="btn btn-outline">Annuler</button>
+                                <button class="btn btn-secondary">Contacter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet Favoris -->
+                <div class="tab-panel" id="favorites">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Mes favoris</h2>
+                        <div class="panel-actions">
+                            <select class="filter-select">
+                                <option value="all">Toutes les catégories</option>
+                                <option value="mode">Mode</option>
+                                <option value="electronique">Électronique</option>
+                                <option value="maison">Maison</option>
+                            </select>
+                            <button class="btn btn-outline">Tout supprimer</button>
+                        </div>
+                    </div>
+
+                    <div class="favorites-grid">
+                        <div class="favorite-item">
+                            <div class="favorite-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5OTPC90ZXh0Pgo8L3N2Zz4=" alt="Produit favori">
+                                <button class="favorite-btn active" title="Retirer des favoris">❤️</button>
+                            </div>
+                            <div class="favorite-info">
+                                <h3 class="favorite-title">Sac à main Chanel</h3>
+                                <p class="favorite-price">850€</p>
+                                <p class="favorite-seller">Par Anna Martin</p>
+                            </div>
+                        </div>
+
+                        <div class="favorite-item">
+                            <div class="favorite-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GTPC90ZXh0Pgo8L3N2Zz4=" alt="Produit favori">
+                                <button class="favorite-btn active" title="Retirer des favoris">❤️</button>
+                            </div>
+                            <div class="favorite-info">
+                                <h3 class="favorite-title">Montre Rolex Submariner</h3>
+                                <p class="favorite-price">4,500€</p>
+                                <p class="favorite-seller">Par Michel Dubois</p>
+                            </div>
+                        </div>
+
+                        <div class="favorite-item">
+                            <div class="favorite-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GTPC90ZXh0Pgo8L3N2Zz4=" alt="Produit favori">
+                                <button class="favorite-btn active" title="Retirer des favoris">❤️</button>
+                            </div>
+                            <div class="favorite-info">
+                                <h3 class="favorite-title">Baskets Jordan 1 Retro</h3>
+                                <p class="favorite-price">180€</p>
+                                <p class="favorite-seller">Par Lucas Petit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet Avis -->
+                <div class="tab-panel" id="reviews">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Avis reçus</h2>
+                        <div class="rating-summary">
+                            <div class="rating-score">
+                                <span class="score">4.8</span>
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="rating-text">127 avis • Excellent vendeur</p>
+                        </div>
+                    </div>
+
+                    <div class="reviews-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">ML</div>
+                                    <div class="reviewer-details">
+                                        <h4 class="reviewer-name">Marie Leblanc</h4>
+                                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <span class="review-date">Il y a 2 jours</span>
+                            </div>
+                            <p class="review-text">Excellent vendeur ! L'iPhone était exactement comme décrit, livraison rapide et emballage soigné. Je recommande vivement !</p>
+                            <div class="review-product">
+                                <span class="product-name">iPhone 13 Pro Max 256GB</span>
+                            </div>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">PM</div>
+                                    <div class="reviewer-details">
+                                        <h4 class="reviewer-name">Pierre Martin</h4>
+                                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <span class="review-date">Il y a 1 semaine</span>
+                            </div>
+                            <p class="review-text">Transaction parfaite ! Communication fluide, produit conforme et envoi rapide. Merci beaucoup !</p>
+                            <div class="review-product">
+                                <span class="product-name">Nike Air Max 270 Blanc</span>
+                            </div>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">SD</div>
+                                    <div class="reviewer-details">
+                                        <h4 class="reviewer-name">Sophie Durand</h4>
+                                        <div class="review-rating">⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <span class="review-date">Il y a 2 semaines</span>
+                            </div>
+                            <p class="review-text">Très bon vendeur, réactif et honnête. Le produit était en très bon état comme annoncé.</p>
+                            <div class="review-product">
+                                <span class="product-name">MacBook Air M1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet Paramètres -->
+                <div class="tab-panel" id="settings">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Paramètres du compte</h2>
+                    </div>
+
+                    <div class="settings-sections">
+                        <div class="settings-section">
+                            <h3 class="section-title">Informations personnelles</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label class="form-label">Nom complet</label>
+                                    <input type="text" class="form-input" value="Jean Dupont">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-input" value="jean.dupont@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Téléphone</label>
+                                    <input type="tel" class="form-input" value="+33 6 12 34 56 78">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Adresse</label>
+                                    <textarea class="form-textarea" rows="3">123 Rue de la Paix
+75001 Paris, France</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 class="section-title">Notifications</h3>
+                            <div class="settings-options">
+                                <label class="setting-option">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-info">
+                                        <h4>Nouveaux messages</h4>
+                                        <p>Recevoir une notification pour chaque nouveau message</p>
+                                    </div>
+                                </label>
+                                <label class="setting-option">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-info">
+                                        <h4>Ventes et achats</h4>
+                                        <p>Notifications pour les ventes et achats</p>
+                                    </div>
+                                </label>
+                                <label class="setting-option">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    <div class="option-info">
+                                        <h4>Promotions</h4>
+                                        <p>Recevoir les offres spéciales et promotions</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 class="section-title">Confidentialité</h3>
+                            <div class="settings-options">
+                                <label class="setting-option">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-info">
+                                        <h4>Profil public</h4>
+                                        <p>Permettre aux autres utilisateurs de voir votre profil</p>
+                                    </div>
+                                </label>
+                                <label class="setting-option">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-info">
+                                        <h4>Afficher les avis</h4>
+                                        <p>Afficher vos avis sur votre profil public</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-actions">
+                            <button class="btn btn-primary">Sauvegarder les modifications</button>
+                            <button class="btn btn-outline">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="theme-toggle.js"></script>
+    <script>
+        // Gestion des onglets
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Retirer la classe active de tous les boutons et panneaux
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                
+                // Ajouter la classe active au bouton et panneau sélectionnés
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Fonctions utilitaires
+        function editProfile() {
+            // Basculer vers l'onglet paramètres
+            document.querySelector('[data-tab="settings"]').click();
+        }
+
+        function goToPublish() {
+            window.location.href = 'publish.html';
+        }
+
+        // Gestion des favoris
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.textContent = '❤️';
+                    this.title = 'Retirer des favoris';
+                } else {
+                    this.textContent = '🤍';
+                    this.title = 'Ajouter aux favoris';
+                }
+            });
+        });
+
+        // Gestion des actions sur les produits
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const action = this.title.toLowerCase();
+                alert(`Action: ${action}`);
+            });
+        });
+
+        // Filtres
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function() {
+                const filterValue = this.value;
+                console.log(`Filtre appliqué: ${filterValue}`);
+                // Ici on pourrait implémenter la logique de filtrage
+            });
+        });
+
+        // Animation des statistiques au chargement
+        window.addEventListener('load', () => {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const finalValue = stat.textContent;
+                stat.textContent = '0';
+                
+                // Animation simple pour les nombres
+                if (finalValue.includes('€')) {
+                    animateValue(stat, 0, parseInt(finalValue.replace(/[€,]/g, '')), 1000, '€');
+                } else if (!isNaN(parseInt(finalValue))) {
+                    animateValue(stat, 0, parseInt(finalValue), 1000);
+                } else {
+                    stat.textContent = finalValue;
+                }
+            });
+        });
+
+        function animateValue(element, start, end, duration, suffix = '') {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                
+                if (suffix === '€') {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 16);
+        }
+    </script>
+
+    <style>
+        /* Styles spécifiques à la page dashboard */
+        .dashboard-main {
+            padding: var(--spacing-xl) 0;
+            min-height: calc(100vh - 70px);
+            background: var(--bg-secondary);
+        }
+
+        .profile-header {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-xl);
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+        }
+
+        .profile-avatar {
+            position: relative;
+        }
+
+        .profile-avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: var(--secondary-color);
+            color: var(--text-white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            border: 3px solid var(--bg-card);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .profile-username {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .stat-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            color: #22c55e;
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            gap: var(--spacing-xs);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        .tab-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .tab-panel {
+            display: none;
+            padding: var(--spacing-2xl);
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .product-card {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-status {
+            position: absolute;
+            top: var(--spacing-sm);
+            left: var(--spacing-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .product-status.active {
+            background: #22c55e;
+            color: var(--text-white);
+        }
+
+        .product-status.sold {
+            background: #6b7280;
+            color: var(--text-white);
+        }
+
+        .product-status.draft {
+            background: #f59e0b;
+            color: var(--text-white);
+        }
+
+        .product-actions {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            display: flex;
+            gap: var(--spacing-xs);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: var(--text-white);
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: var(--spacing-lg);
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .product-stats {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .product-date {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .add-product-card {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-product-card:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .add-product-content {
+            text-align: center;
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .add-product-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .add-product-content p {
+            color: var(--text-secondary);
+        }
+
+        .purchases-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .purchase-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .purchase-item:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .purchase-image img {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+        }
+
+        .purchase-details {
+            flex: 1;
+        }
+
+        .purchase-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .purchase-seller {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .purchase-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .purchase-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.9rem;
+        }
+
+        .purchase-status.delivered {
+            color: #22c55e;
+        }
+
+        .purchase-status.shipping {
+            color: #f59e0b;
+        }
+
+        .purchase-status.pending {
+            color: #6b7280;
+        }
+
+        .purchase-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .favorite-item {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .favorite-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .favorite-image {
+            position: relative;
+            aspect-ratio: 1;
+        }
+
+        .favorite-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .favorite-info {
+            padding: var(--spacing-md);
+        }
+
+        .favorite-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .favorite-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .favorite-seller {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .rating-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stars {
+            font-size: 1.2rem;
+        }
+
+        .rating-text {
+            color: var(--text-secondary);
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .review-item {
+            padding: var(--spacing-lg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .reviewer-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .review-rating {
+            font-size: 0.9rem;
+        }
+
+        .review-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .review-text {
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .review-product {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            display: inline-block;
+        }
+
+        .product-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .settings-sections {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2xl);
+        }
+
+        .settings-section {
+            padding-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+
+        .settings-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group:last-child {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-textarea {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .settings-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .setting-option {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            cursor: pointer;
+        }
+
+        .setting-option input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .setting-option input[type="checkbox"]:checked + .checkmark {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .setting-option input[type="checkbox"]:checked + .checkmark:after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-white);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .option-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .option-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .settings-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            padding-top: var(--spacing-xl);
+        }
+
+        @media (max-width: 1024px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-actions {
+                justify-content: center;
+            }
+
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-tabs {
+                overflow-x: auto;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                align-items: flex-start;
+            }
+
+            .purchase-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .purchase-actions {
+                justify-content: center;
+            }
+
+            .settings-form {
+                grid-template-columns: 1fr;
+            }
+
+            .favorites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</body>
+</html>
+

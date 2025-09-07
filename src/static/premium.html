@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - Kitalamarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h2>Kitalamarket</h2>
+                </a>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="search.html" class="nav-link">Rechercher</a>
+                <a href="publish.html" class="nav-link">Vendre</a>
+                <a href="chat.html" class="nav-link">Messages</a>
+                <a href="dashboard.html" class="nav-link">Tableau de bord</a>
+                <a href="premium.html" class="nav-link active">Premium</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="auth.html" class="btn btn-primary">Connexion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Premium Header -->
+            <div class="premium-header">
+                <h1>Passez au Premium</h1>
+                <p>Débloquez toutes les fonctionnalités avancées de Kitalamarket</p>
+                
+                <!-- Current Plan Status -->
+                <div id="current-plan-status" class="current-plan-card" style="display: none;">
+                    <div class="plan-info">
+                        <h3 id="current-plan-name">Premium Pro</h3>
+                        <p id="current-plan-expires">Expire le 15 février 2024</p>
+                        <span id="current-plan-badge" class="premium-badge">Actif</span>
+                    </div>
+                    <button id="cancel-subscription-btn" class="btn btn-outline">Annuler l'abonnement</button>
+                </div>
+            </div>
+
+            <!-- Premium Plans -->
+            <div class="premium-plans">
+                <div class="plans-grid" id="plans-grid">
+                    <!-- Plans will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Premium Features -->
+            <div class="premium-features">
+                <h2>Pourquoi choisir Premium ?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Mise en avant</h3>
+                        <p>Vos annonces apparaissent en premier dans les résultats de recherche</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Statistiques avancées</h3>
+                        <p>Analysez les performances de vos annonces avec des données détaillées</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Promotion ciblée</h3>
+                        <p>Atteignez plus d'acheteurs avec nos outils de promotion</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Badge Premium</h3>
+                        <p>Affichez votre statut premium et gagnez en crédibilité</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Support prioritaire</h3>
+                        <p>Bénéficiez d'une assistance rapide et personnalisée</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Analytics détaillées</h3>
+                        <p>Comprenez votre audience avec des rapports complets</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Stats (for premium users) -->
+            <div id="usage-stats" class="usage-stats" style="display: none;">
+                <h2>Vos statistiques Premium</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="featured-listings">0</div>
+                        <div class="stat-label">Annonces mises en avant</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="priority-tickets">0</div>
+                        <div class="stat-label">Tickets support prioritaire</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="analytics-views">0</div>
+                        <div class="stat-label">Vues analytics</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="api-calls">0</div>
+                        <div class="stat-label">Appels API</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="payment-modal-title">Paiement Premium</h3>
+                <button class="modal-close" id="close-payment-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="payment-form">
+                    <div class="form-group">
+                        <label for="phone-number">Numéro de téléphone Mobile Money</label>
+                        <input type="tel" id="phone-number" placeholder="+237 6XX XX XX XX" required>
+                        <small class="form-help">
+                            MTN (06, 67, 65X, 68X) ou Airtel (05, 04, 75, 76, 77, 78)
+                        </small>
+                    </div>
+                    <div class="payment-summary">
+                        <div class="summary-row">
+                            <span>Plan sélectionné:</span>
+                            <span id="selected-plan-name">Premium Pro</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Prix:</span>
+                            <span id="selected-plan-price">19.99€</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Durée:</span>
+                            <span>30 jours</span>
+                        </div>
+                    </div>
+                    <button id="confirm-payment-btn" class="btn btn-primary btn-full">Confirmer le paiement</button>
+                </div>
+                
+                <div id="payment-processing" style="display: none;">
+                    <div class="payment-status">
+                        <div class="loading-spinner"></div>
+                        <h4>Traitement du paiement...</h4>
+                        <p id="payment-instructions">Vérifiez votre téléphone et confirmez le paiement</p>
+                        <div class="payment-info">
+                            <p><strong>Montant:</strong> <span id="processing-amount">19.99€</span></p>
+                            <p><strong>Opérateur:</strong> <span id="processing-provider">MTN</span></p>
+                            <p><strong>Transaction ID:</strong> <span id="processing-transaction-id">...</span></p>
+                        </div>
+                        <button id="check-payment-status-btn" class="btn btn-outline">Vérifier le statut</button>
+                    </div>
+                </div>
+                
+                <div id="payment-success" style="display: none;">
+                    <div class="payment-status success">
+                        <div class="success-icon">✅</div>
+                        <h4>Paiement réussi !</h4>
+                        <p>Votre abonnement Premium a été activé avec succès.</p>
+                        <button id="close-success-btn" class="btn btn-primary">Fermer</button>
+                    </div>
+                </div>
+                
+                <div id="payment-error" style="display: none;">
+                    <div class="payment-status error">
+                        <div class="error-icon">❌</div>
+                        <h4>Paiement échoué</h4>
+                        <p id="payment-error-message">Une erreur est survenue lors du paiement.</p>
+                        <button id="retry-payment-btn" class="btn btn-primary">Réessayer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <style>
+        .premium-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .premium-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .current-plan-card {
+            background: var(--card-background);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .premium-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .plan-card {
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .plan-card.popular {
+            border-color: var(--primary-color);
+            position: relative;
+        }
+
+        .plan-card.popular::before {
+            content: "Plus populaire";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .plan-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+
+        .plan-duration {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .plan-features li {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: var(--spacing-sm);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .payment-summary {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--spacing-sm);
+        }
+
+        .payment-status {
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+
+        .payment-status h4 {
+            margin: var(--spacing-md) 0;
+        }
+
+        .payment-info {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            text-align: left;
+        }
+
+        .payment-info p {
+            margin: var(--spacing-sm) 0;
+        }
+
+        .loading-spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--spacing-md);
+        }
+
+        .success-icon, .error-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .payment-status.success {
+            color: var(--success-color);
+        }
+
+        .payment-status.error {
+            color: var(--error-color);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .premium-header h1 {
+                font-size: 2rem;
+            }
+
+            .current-plan-card {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+
+    <script src="theme-toggle.js"></script>
+    <script src="api.js"></script>
+    <script>
+        let currentPlan = null;
+        let selectedPlan = null;
+        let currentTransaction = null;
+
+        // Load premium data on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadPremiumData();
+            setupEventListeners();
+        });
+
+        async function loadPremiumData() {
+            try {
+                // Load current plan
+                const currentPlanResponse = await api.getCurrentPlan();
+                if (currentPlanResponse.has_premium) {
+                    currentPlan = currentPlanResponse;
+                    showCurrentPlan(currentPlanResponse);
+                    await loadUsageStats();
+                }
+
+                // Load available plans
+                const plansResponse = await api.getPremiumPlans();
+                displayPlans(plansResponse.plans);
+
+            } catch (error) {
+                console.error('Error loading premium data:', error);
+                showNotification('Erreur lors du chargement des données premium', 'error');
+            }
+        }
+
+        function showCurrentPlan(planData) {
+            const statusCard = document.getElementById('current-plan-status');
+            const planName = document.getElementById('current-plan-name');
+            const planExpires = document.getElementById('current-plan-expires');
+            
+            planName.textContent = `Premium ${planData.plan}`;
+            
+            const expiresDate = new Date(planData.expires_at);
+            planExpires.textContent = `Expire le ${expiresDate.toLocaleDateString('fr-FR')}`;
+            
+            statusCard.style.display = 'block';
+        }
+
+        async function loadUsageStats() {
+            try {
+                const stats = await api.getPremiumUsageStats();
+                
+                document.getElementById('featured-listings').textContent = stats.featured_listings;
+                document.getElementById('priority-tickets').textContent = stats.priority_support_tickets;
+                document.getElementById('analytics-views').textContent = stats.analytics_views.toLocaleString();
+                document.getElementById('api-calls').textContent = stats.api_calls;
+                
+                document.getElementById('usage-stats').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading usage stats:', error);
+            }
+        }
+
+        function displayPlans(plans) {
+            const plansGrid = document.getElementById('plans-grid');
+            plansGrid.innerHTML = '';
+
+            Object.entries(plans).forEach(([planId, plan]) => {
+                const planCard = document.createElement('div');
+                planCard.className = `plan-card ${planId === 'pro' ? 'popular' : ''}`;
+                
+                planCard.innerHTML = `
+                    <div class="plan-name">${plan.name}</div>
+                    <div class="plan-price">
+                        <span class="currency">€</span>${plan.price}
+                    </div>
+                    <div class="plan-duration">par mois</div>
+                    <ul class="plan-features">
+                        ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="btn btn-primary btn-full subscribe-btn" data-plan-id="${planId}">
+                        ${currentPlan && currentPlan.plan === planId ? 'Plan actuel' : 'Choisir ce plan'}
+                    </button>
+                `;
+
+                // Disable button if it's the current plan
+                if (currentPlan && currentPlan.plan === planId) {
+                    const button = planCard.querySelector('.subscribe-btn');
+                    button.disabled = true;
+                    button.classList.add('btn-disabled');
+                }
+
+                plansGrid.appendChild(planCard);
+            });
+        }
+
+        function setupEventListeners() {
+            // Subscribe buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('subscribe-btn') && !e.target.disabled) {
+                    const planId = e.target.dataset.planId;
+                    openPaymentModal(planId);
+                }
+            });
+
+            // Cancel subscription
+            document.getElementById('cancel-subscription-btn').addEventListener('click', async function() {
+                if (confirm('Êtes-vous sûr de vouloir annuler votre abonnement premium ?')) {
+                    try {
+                        await api.cancelPremiumSubscription();
+                        showNotification('Abonnement annulé avec succès', 'success');
+                        location.reload();
+                    } catch (error) {
+                        showNotification('Erreur lors de l\'annulation: ' + error.message, 'error');
+                    }
+                }
+            });
+
+            // Payment modal
+            document.getElementById('close-payment-modal').addEventListener('click', closePaymentModal);
+            document.getElementById('confirm-payment-btn').addEventListener('click', processPayment);
+            document.getElementById('check-payment-status-btn').addEventListener('click', checkPaymentStatus);
+            document.getElementById('close-success-btn').addEventListener('click', closePaymentModal);
+            document.getElementById('retry-payment-btn').addEventListener('click', retryPayment);
+
+            // Close modal on outside click
+            document.getElementById('payment-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closePaymentModal();
+                }
+            });
+        }
+
+        async function openPaymentModal(planId) {
+            try {
+                const plansResponse = await api.getPremiumPlans();
+                const plan = plansResponse.plans[planId];
+                
+                selectedPlan = { id: planId, ...plan };
+                
+                document.getElementById('selected-plan-name').textContent = plan.name;
+                document.getElementById('selected-plan-price').textContent = `${plan.price}€`;
+                
+                // Reset modal state
+                showPaymentStep('form');
+                
+                document.getElementById('payment-modal').style.display = 'flex';
+            } catch (error) {
+                showNotification('Erreur lors de l\'ouverture du modal de paiement', 'error');
+            }
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+            selectedPlan = null;
+            currentTransaction = null;
+        }
+
+        function showPaymentStep(step) {
+            document.getElementById('payment-form').style.display = step === 'form' ? 'block' : 'none';
+            document.getElementById('payment-processing').style.display = step === 'processing' ? 'block' : 'none';
+            document.getElementById('payment-success').style.display = step === 'success' ? 'block' : 'none';
+            document.getElementById('payment-error').style.display = step === 'error' ? 'block' : 'none';
+        }
+
+        async function processPayment() {
+            const phoneNumber = document.getElementById('phone-number').value.trim();
+            
+            if (!phoneNumber) {
+                showNotification('Veuillez saisir votre numéro de téléphone', 'error');
+                return;
+            }
+
+            if (!phoneNumber.startsWith('+')) {
+                showNotification('Le numéro doit commencer par + (ex: +237)', 'error');
+                return;
+            }
+
+            try {
+                showPaymentStep('processing');
+                
+                const response = await api.subscribeToPremium(selectedPlan.id, phoneNumber);
+                
+                currentTransaction = response.transaction_id;
+                
+                document.getElementById('processing-amount').textContent = `${response.amount}€`;
+                document.getElementById('processing-provider').textContent = response.provider;
+                document.getElementById('processing-transaction-id').textContent = response.transaction_id;
+                document.getElementById('payment-instructions').textContent = response.instructions;
+                
+                // Auto-check status after a delay
+                setTimeout(checkPaymentStatus, 5000);
+                
+            } catch (error) {
+                showPaymentStep('error');
+                document.getElementById('payment-error-message').textContent = error.message;
+            }
+        }
+
+        async function checkPaymentStatus() {
+            if (!currentTransaction) return;
+
+            try {
+                const status = await api.checkPremiumPaymentStatus(currentTransaction);
+                
+                if (status.status === 'SUCCESS') {
+                    showPaymentStep('success');
+                    showNotification('Abonnement Premium activé avec succès !', 'success');
+                    
+                    // Reload page after success
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                    
+                } else if (status.status === 'FAILED') {
+                    showPaymentStep('error');
+                    document.getElementById('payment-error-message').textContent = status.message || 'Le paiement a échoué';
+                    
+                } else {
+                    // Still pending, check again in a few seconds
+                    setTimeout(checkPaymentStatus, 3000);
+                }
+                
+            } catch (error) {
+                showPaymentStep('error');
+                document.getElementById('payment-error-message').textContent = 'Erreur lors de la vérification du paiement';
+            }
+        }
+
+        function retryPayment() {
+            showPaymentStep('form');
+            currentTransaction = null;
+        }
+    </script>
+</body>
+</html>
+
